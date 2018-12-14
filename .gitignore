@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+#.nfs files that are created when an open file is removed but still being accessed
+.nfs*
