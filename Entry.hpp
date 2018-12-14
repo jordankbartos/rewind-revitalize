@@ -25,6 +25,7 @@ class Entry
 	public:
 		//constructors and destructor
 		Entry();
+		Entry(std::string*,std::string*,int,int,int);
 		~Entry();
 
 		//getters and setters

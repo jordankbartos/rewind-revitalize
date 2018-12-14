@@ -15,7 +15,27 @@
 *******************************************************************************/
 Entry::Entry()
 {
+	this->textBody = NULL;
+	this->madeHappy = NULL;
+	this->wordCount = 0;
+	this->date = 0;
+	this->mood = 0;
 }
+
+/*******************************************************************************
+ * Function:			Entry(string*,string*,int,int,int)
+ * Description: constructor for an Entry object that takes parameters for each
+ * 	memeber variable
+*******************************************************************************/
+Entry::Entry(std::string* tb, std::string* mh, int wc, int d, int m)
+{
+	this->textBody = tb;
+	this->madeHappy = mh;
+	this->wordCount = wc;
+	this->date = d;
+	this->mood = m;
+}
+
 
 /*******************************************************************************
  * Function:			~Entry()
@@ -23,6 +43,8 @@ Entry::Entry()
 *******************************************************************************/
 Entry::~Entry()
 {
+	delete this->textBody;
+	delete this->madeHappy;
 }
 
 /*******************************************************************************

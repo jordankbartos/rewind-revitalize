@@ -11,30 +11,32 @@
 #define JOURNAL_HPP
 
 #include <fstream>
+#include <vector>
 #include "Entry.hpp"
 
 class Journal
 {
 	private:
 		std::string* author;
-		Entry* entries;	 	//a pointer to an array of entries
+		std::vector<Entry*> entries;	 	//a pointer to an array of entries
 		std::string* password;
 		int numEntries;
 		double avgWordCount;
 		int longestPost;
 		int shortestPost;
-		std::fstream* EntriesLog; //a pointer to an fstream object for saving/loading a log file
+		std::fstream EntriesLog; //a pointer to an fstream object for saving/loading a log file
 	protected:
 	public:
 		//constructors and destructors
 		Journal();
+		Journal(std::string);
 		~Journal();
 		//getters and setters
 		std::string* getPassword();
 		//other functions
 		void encryptAndSave();
 		void decryptAndLoad();
-		void displayEntry(std::string*);
+		void displayEntry(std::string);
 		void addEntry();
 		
 };

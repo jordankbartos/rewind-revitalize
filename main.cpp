@@ -15,6 +15,9 @@
 *******************************************************************************/
 int main()
 {
+	Journal* journal = new Journal("sampleLog.log");
+	journal->displayEntry("");
+	delete journal;
 	return 0;
 }
 
