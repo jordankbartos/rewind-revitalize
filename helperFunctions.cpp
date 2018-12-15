@@ -173,7 +173,7 @@ char getYesNoAnswer() {
 
 int checkValidity(int lower, int upper)
 {
-	string getter;
+	std::string getter;
 	bool isValid = false;
 	bool isNegative = false;
 
