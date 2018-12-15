@@ -202,7 +202,7 @@ void Journal::addEntry()
 	// looking forward to stuff?
 	//Count the words
 	//Create entry from this stuff and get it into journal?
-
+	pause();
 }
 
 /*******************************************************************************
