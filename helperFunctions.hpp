@@ -2,12 +2,13 @@
 #ifndef HELPERFUNCTIONS_HPP
 #define HELPERFUNCTIONS_HPP
 
-#include <iostream>
-#include <string>
-
-
+void displayIntro();
+char displayMainMenu();
+void displayOutro();
 void clearTheScreen();
 void pause();
+char validateMenuChoice(char);
+char getYesNoAnswer();
 
 
 #endif
