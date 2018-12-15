@@ -241,7 +241,7 @@ void Journal::addEntry()
 	std::string tempString;
 	getline(cin, tempString);
 	//Store in happy
-	newEntry->setMadeHappy(tempString);
+	newEntry->setMadeHappy(&tempString);
 	clearTheScreen();
 
 	//Prompt the user for main entry
