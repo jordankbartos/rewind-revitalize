@@ -6,7 +6,7 @@
 *******************************************************************************/
 
 #include "Journal.hpp"
-#include <iostream>
+
 
 
 
@@ -89,8 +89,8 @@ Journal::Journal(std::string filename)
 		std::getline(this->EntriesLog,*textBody);
 
 		//get madeHappy
-		std::string* madeHappy = new std::string;
-		std::getline(this->EntriesLog,*madeHappy, '\n');
+		std::string madeHappy;
+		std::getline(this->EntriesLog, madeHappy, '\n');
 
 		//generate a journal entry object and add it to the vector of
 		//journal entries
@@ -100,7 +100,7 @@ Journal::Journal(std::string filename)
 		//peek at next character to see if loop loop needs to end
 		endFile = EntriesLog.peek();
 	}
-	
+
 	this->EntriesLog.close();
 }
 
@@ -153,14 +153,14 @@ void Journal::encryptAndSave()
 	outputFile.open(*this->encryptedFile, std::ofstream::trunc);
 
 	this->EntriesLog.open("sampleLog.log");
-	
+
 	while(EntriesLog >> ch)
 	{
 		ch ^= encryptionKey;
 		outputFile.put(ch);
 	}
 
-	
+
 	outputFile.close();
 }
 
@@ -194,7 +194,7 @@ void Journal::displayEntry(int search)
 			std::cout << "Mood: "
 					<< this->entries.at(i)->getMood() << "\n";
 			std::cout << "\nMade me happy:\n"
-					<< *this->entries.at(i)->getMadeHappy() << "\n\n";
+					<< this->entries.at(i)->getMadeHappy() << "\n\n";
 			std::cout << "Entry:\n"
 					<< *this->entries.at(i)->getTextBody() << std::endl;
 
@@ -233,15 +233,24 @@ void Journal::addEntry()
 	clearTheScreen();
 	cout << "How would you rate your mood? (1 -5)" << endl;
 	int mood = checkValidity(1, 5);
-	
+	newEntry->setMood(mood);
+	clearTheScreen();
+
 	//Prompt the user for what made them happy
+	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
+	std::string tempString;
+	getline(cin, tempString);
 	//Store in happy
-	//clear screen
+	newEntry->setMadeHappy(tempString);
+	clearTheScreen();
+
 	//Prompt the user for main entry
 	//Get input for main entry
-	// looking forward to stuff?
+
+
 	//Count the words
-	//Create entry from this stuff and get it into journal?
+	//Store it
+	this->entries.push_back(newEntry);
 	pause();
 	delete newEntry;
 }
