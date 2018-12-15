@@ -135,12 +135,12 @@ std::string* Entry::getMadeHappy()
  * Description: returns a string for a randomly selected prompt. Prompts are
  * stored in a text file and the function randomly decides which line to use.
 *******************************************************************************/
-string getPrompt()
+std::string getPrompt()
 {
 	//Initialize random number and open prompt file
 	int num = rand();
 	fstream input;
-	string prompt;
+	std::string prompt;
 	input.open("prompts.txt");
 	if(!input)
 	{
@@ -150,7 +150,7 @@ string getPrompt()
 
 	//Get random num in range
 	num = num % 40 + 1;
-	//Loop until the correct line is found 
+	//Loop until the correct line is found
 	for(int i = 0; i < num; i++)
 	{
 		getline(input, prompt);
