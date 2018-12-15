@@ -10,6 +10,7 @@
 
 
 
+
 /*******************************************************************************
  * Function: 			Journal()
  * Description: default constructor for a Journal object

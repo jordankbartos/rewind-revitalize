@@ -13,39 +13,71 @@
 int main()
 {
 	/* TESTING AREA */
-	Journal* journal = new Journal("sampleLog.log");
-	journal->displayEntry(1234567890);
-	journal->encryptAndSave();
-	delete journal;
+	/*journal->displayEntry(1234567890);
+	journal->encryptAndSave();*/
 
-	char selection;		// To hold user selections.
+	char selection;			// To hold user menu selections.
+	std::string* password = new std::string();
+	bool validPassword = false;
 
 	// Display the main menu.
 	displayIntro();
 
-	/* TODO: Perhaps have an option to login here or somewhere to
-	 * prompt for the user password to do the decryption */
+	// Create the journal.
+	Journal* journal = new Journal("sampleLog.log");
+
+	do {
+		
+		// Prompt for the user password to do the decryption.
+		std::cout << "\nPlease enter your password: ";
+		getline(std::cin, *password);
+
+		// Validate password.
+		if (*password == *journal->getPassword()) {
+
+			validPassword = true;
+		}
+		else {
+
+			std::cout << "\nThat is not a valid password.\n";
+		}
+
+	} while (!validPassword);
+
+	// If password was successful, decrypt the journal entries.
+	journal->decryptAndLoad();
 
 	// Display the main menu.
 	do {
 
+		// Display main menu and get user choice.
 		selection = validateMenuChoice(displayMainMenu());
 
 		switch (selection) {
 
 		// User selected option 1: enter a new journal.
 		case '1':
-			// TODO
+			
+			journal->addEntry();
 			break;
 
 		// User selected option 2: show a happy memory.
 		case '2':
-			// TODO
+
+			journal->rewind();
 			break;
 
 		// User selected option 3: show statistics.
 		case '3':
-			// TODO
+			
+			// TODO: ANY OTHER STATS TO SHOW??
+			std::cout << "\n\nLIFETIME STATISTICS\n"
+				<< "\nNumber of Entries: " << journal->getNumEntries()
+				<< "\nAverage Word Count: " << journal->getAvgWordCount()
+				<< "\nLongest Entry: " << journal->getLongestPost()
+				<< "\nShortest Entry: " << journal->getShortestPost()
+				<< "\nAverage Mood: " // << journal->getAvgMood() ??
+				<< "\n";
 			break;
 
 		// User selected option 4: exit. 
@@ -54,24 +86,24 @@ int main()
 			 * to exit the program */
 			break;
 
-		// Input validator should prevent default from being reached.
+		/* EXCEPTION HANDLING:
+		 * Input validator should prevent 'default' from being reached. */
 		default:
 			std::cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
-
 			pause();
 			return 0;
-
 			break;
 		}
-
 
 	} while (selection != '4');
 
 	// Indicate the program is ending.
 	displayOutro();
 
-	// TODO: Be sure to re-encrypt the user's data before exiting!
+	// Be sure to re-encrypt the user's data before exiting!
+	journal->encryptAndSave();
+	delete journal;
 
 	pause();
 	return 0;
