@@ -187,7 +187,7 @@ int checkValidity(int lower, int upper)
 			if(getter[0] == '-' && !isNegative)
 			{
 				isNegative = true;
-				i++
+				i++;
 			}
 
 			//Check all other chars or digit
@@ -214,7 +214,7 @@ int checkValidity(int lower, int upper)
 	//Convert to int and determine if it is in range
 	if(isNegative)
 	{
-		getter = getter.substr(1, (getter.lenght() - 1));
+		getter = getter.substr(1, (getter.length() - 1));
 	}
 
 	int userInput = std::stoi(getter);
