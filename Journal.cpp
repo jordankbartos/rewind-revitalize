@@ -180,11 +180,11 @@ void Journal::addEntry()
 	//https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
 	std::time_t t = time(0);
 	std::tm* now = std::localtime(&t);
-	Entry newEntry = new Entry();
+	Entry* newEntry = new Entry();
 
 	//Date
 	//day
-	int date = (now->tm_day) * 1000000;
+	int date = (now->tm_mday) * 1000000;
 	//Month
 	date += ((now->tm_mon + 1) * 10000);
 	//year
