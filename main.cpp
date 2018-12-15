@@ -26,6 +26,7 @@ int main()
 	// Create the journal.
 	Journal* journal = new Journal("sampleLog.log");
 
+
 	do {
 		
 		// Prompt for the user password to do the decryption.
@@ -106,5 +107,6 @@ int main()
 	delete journal;
 
 	pause();
+
 	return 0;
 }
