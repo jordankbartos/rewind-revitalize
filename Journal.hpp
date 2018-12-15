@@ -10,10 +10,12 @@
 #ifndef JOURNAL_HPP
 #define JOURNAL_HPP
 
-#include <fstream>
-#include <vector>
 #include "Entry.hpp"
 #include "helperFunctions.hpp"
+
+#include <fstream>
+#include <vector>
+
 
 class Journal
 {
@@ -27,7 +29,7 @@ class Journal
 		int longestPost;
 		int shortestPost;
 		// int avgMood; ??
-		std::fstream EntriesLog; 		//a pointer to an fstream object for 
+		std::fstream EntriesLog; 		//a pointer to an fstream object for
 									//saving/loading a log file
 	protected:
 	public:
@@ -46,11 +48,11 @@ class Journal
 
 		//other functions
 		void rewind();			// gets a random happy memory.
-		void encryptAndSave();	// Encrypts the user data to 
+		void encryptAndSave();	// Encrypts the user data to
 		void decryptAndLoad();
 		void displayEntry(int);
 		void addEntry();
-		
+
 };
 
 
