@@ -17,6 +17,7 @@ int main()
 {
 	Journal* journal = new Journal("sampleLog.log");
 	journal->displayEntry(1234567890);
+	journal->encryptAndSave();
 	delete journal;
 	return 0;
 }

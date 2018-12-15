@@ -16,6 +16,7 @@
 *******************************************************************************/
 Journal::Journal()
 {
+	this->encryptedFile = NULL;
 	this->author = NULL;
 	this->password = NULL;
 	this->numEntries = 0;
@@ -39,6 +40,7 @@ Journal::Journal(std::string filename)
 	//if the entry log fails to open, construct the object as a default journal
 	if(!EntriesLog)
 	{
+		this->encryptedFile = NULL;
 		this->author = NULL;
 		this->password = NULL;
 		this->numEntries = 0;
@@ -48,14 +50,17 @@ Journal::Journal(std::string filename)
 		return;
 	}
 
+
+	this->encryptedFile = new std::string("encryptedFile.txt");
+
 	//first thing in file will be the author's name followed by a newline char
 	//100 is the maximum password size
-	this->author = new std::string(100,0);
+	this->author = new std::string;
 	std::getline(EntriesLog,*this->author);
 
 
 	//second thing in file will be the passowrd followed by a newline char
-	this->password = new std::string(100,0);
+	this->password = new std::string;
 	std::getline(EntriesLog,*this->password);
 
 	//next come the entries in order. Keep reading entries until the EOF is
@@ -94,6 +99,8 @@ Journal::Journal(std::string filename)
 		//peek at next character to see if loop loop needs to end
 		endFile = EntriesLog.peek();
 	}
+	
+	this->EntriesLog.close();
 }
 
 /*******************************************************************************
@@ -127,6 +134,33 @@ std::string* Journal::getPassword()
 *******************************************************************************/
 void Journal::encryptAndSave()
 {
+	//generate the encryption key from the password
+	int encryptionKey=1;
+	for(unsigned int i = 0; i < this->password->length(); ++i)
+	{
+		encryptionKey += static_cast<int>(this->password->at(i));
+	}
+
+	std::cout << "encryptionKey: " << encryptionKey << std::endl;
+
+	//char will receive one character at a time from the entries log for
+	//encryption and storage in the encrypted file
+	char ch = 0;
+
+	//ofstream object for storing contents
+	std::ofstream outputFile;
+	outputFile.open(*this->encryptedFile, std::ofstream::trunc);
+
+	this->EntriesLog.open("sampleLog.log");
+	
+	while(EntriesLog >> ch)
+	{
+		ch ^= encryptionKey;
+		outputFile.put(ch);
+	}
+
+	
+	outputFile.close();
 }
 
 /*******************************************************************************
