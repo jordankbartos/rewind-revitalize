@@ -15,20 +15,21 @@ int main()
 	/* TESTING AREA */
 	/*journal->displayEntry(1234567890);
 	journal->encryptAndSave();*/
-
+/*
 	char selection;			// To hold user menu selections.
 	std::string* password = new std::string();
 	bool validPassword = false;
 
 	// Display the main menu.
-	displayIntro();
-
+	//displayIntro();
+*/
 	// Create the journal.
 	Journal* journal = new Journal("sampleLog.log");
-
+	journal->addEntry();
+/*
 
 	do {
-		
+
 		// Prompt for the user password to do the decryption.
 		std::cout << "\nPlease enter your password: ";
 		getline(std::cin, *password);
@@ -58,7 +59,7 @@ int main()
 
 		// User selected option 1: enter a new journal.
 		case '1':
-			
+
 			journal->addEntry();
 			break;
 
@@ -70,7 +71,7 @@ int main()
 
 		// User selected option 3: show statistics.
 		case '3':
-			
+
 			// TODO: ANY OTHER STATS TO SHOW??
 			std::cout << "\n\nLIFETIME STATISTICS\n"
 				<< "\nNumber of Entries: " << journal->getNumEntries()
@@ -81,14 +82,16 @@ int main()
 				<< "\n";
 			break;
 
-		// User selected option 4: exit. 
+		// User selected option 4: exit.
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
+			 /*
 			break;
 
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
+		 /*
 		default:
 			std::cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
@@ -103,7 +106,7 @@ int main()
 	displayOutro();
 
 	// Be sure to re-encrypt the user's data before exiting!
-	journal->encryptAndSave();
+	journal->encryptAndSave(); */
 	delete journal;
 
 	pause();
