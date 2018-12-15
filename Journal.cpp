@@ -100,7 +100,7 @@ Journal::Journal(std::string filename)
 		//peek at next character to see if loop loop needs to end
 		endFile = EntriesLog.peek();
 	}
-	
+
 	this->EntriesLog.close();
 }
 
@@ -153,14 +153,14 @@ void Journal::encryptAndSave()
 	outputFile.open(*this->encryptedFile, std::ofstream::trunc);
 
 	this->EntriesLog.open("sampleLog.log");
-	
+
 	while(EntriesLog >> ch)
 	{
 		ch ^= encryptionKey;
 		outputFile.put(ch);
 	}
 
-	
+
 	outputFile.close();
 }
 
@@ -233,15 +233,24 @@ void Journal::addEntry()
 	clearTheScreen();
 	cout << "How would you rate your mood? (1 -5)" << endl;
 	int mood = checkValidity(1, 5);
+	newEntry->setMood(mood);
+	clearTheScreen();
 	
 	//Prompt the user for what made them happy
+	cout<< endl << endl << "In one sentence, what is something that made you happy today? " << endl;
+	string getter;
+	getline(cin, getter);
 	//Store in happy
-	//clear screen
+	newEntry->setMadeHappy(getter);
+	clearTheScreen();
+
 	//Prompt the user for main entry
 	//Get input for main entry
-	// looking forward to stuff?
+
+
 	//Count the words
-	//Create entry from this stuff and get it into journal?
+	//Store it
+	this->entries.push_back(newEntry);
 	pause();
 	delete newEntry;
 }
