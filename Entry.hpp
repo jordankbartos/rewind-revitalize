@@ -12,6 +12,21 @@
 
 #include <string>
 
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::endl;
+
+#include <fstream>
+using std::fstream;
+
+#include <ctime>
+using std::time;
+
+#include<cstdlib>
+using std::srand;
+using std::rand;
+
 class Entry
 {
 	private:
@@ -20,7 +35,7 @@ class Entry
 		int wordCount;
 		int date;
 		int mood;
-		
+
 	protected:
 	public:
 		//constructors and destructor
@@ -41,6 +56,7 @@ class Entry
 		void setMadeHappy(std::string*);
 
 		//other functions
+		std::string getPrompt();
 };
 
 
