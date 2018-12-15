@@ -16,7 +16,7 @@
 Entry::Entry()
 {
 	this->textBody = NULL;
-	this->madeHappy = NULL;
+	this->madeHappy ="";
 	this->wordCount = 0;
 	this->date = 0;
 	this->mood = 0;
@@ -44,7 +44,6 @@ Entry::Entry(std::string* tb, std::string mh, int wc, int d, int m)
 Entry::~Entry()
 {
 	delete this->textBody;
-	delete this->madeHappy;
 }
 
 /*******************************************************************************
