@@ -16,7 +16,7 @@
 int main()
 {
 	Journal* journal = new Journal("sampleLog.log");
-	journal->displayEntry("");
+	journal->displayEntry(1234567890);
 	delete journal;
 	return 0;
 }

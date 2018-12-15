@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 #include "Entry.hpp"
+#include "helperFunctions.hpp"
 
 class Journal
 {
@@ -36,7 +37,7 @@ class Journal
 		//other functions
 		void encryptAndSave();
 		void decryptAndLoad();
-		void displayEntry(std::string);
+		void displayEntry(int);
 		void addEntry();
 		
 };

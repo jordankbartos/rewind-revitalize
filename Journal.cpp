@@ -60,7 +60,8 @@ Journal::Journal(std::string filename)
 
 	//next come the entries in order. Keep reading entries until the EOF is
 	//reached
-	while(EntriesLog)
+	int endFile = 0;
+	while(EntriesLog && endFile != EOF)
 	{
 		//collect the information for the journal entry in local variables
 		std::string tmp;
@@ -89,6 +90,9 @@ Journal::Journal(std::string filename)
 		//journal entries
 		this->entries.push_back(new Entry(textBody, madeHappy, wordCount, 
 				entryDate, mood));
+
+		//peek at next character to see if loop loop needs to end
+		endFile = EntriesLog.peek();
 	}
 }
 
@@ -142,8 +146,27 @@ void Journal::decryptAndLoad()
  * 	correspond to a date (or maybe a search criteria??), searches entries that
  *	match and displays them
 *******************************************************************************/
-void Journal::displayEntry(std::string search)
+void Journal::displayEntry(int search)
 {
+	for(unsigned int i = 0; i < this->entries.size(); ++i)
+	{
+		if(this->entries.at(i)->getDate() == search)
+		{
+			clearTheScreen();
+
+			std::cout << "Date: " 
+					<< this->entries.at(i)->getDate() << "\n";
+			std::cout << "Mood: "
+					<< this->entries.at(i)->getMood() << "\n";
+			std::cout << "\nMade me happy:\n" 
+					<< *this->entries.at(i)->getMadeHappy() << "\n\n";
+			std::cout << "Entry:\n"
+					<< *this->entries.at(i)->getTextBody() << std::endl;
+			
+			pause();
+		}
+	}
+	return;
 }
 
 /*******************************************************************************
