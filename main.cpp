@@ -19,6 +19,7 @@ int main()
 	Journal* journal = new Journal("sampleLog.log");
 	journal->displayEntry(1234567890);
 	delete journal;
+	cout << "UserInputs Branch under construction" << endl;
 	return 0;
 }
 
