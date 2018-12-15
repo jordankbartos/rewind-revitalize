@@ -27,7 +27,7 @@ Entry::Entry()
  * Description: constructor for an Entry object that takes parameters for each
  * 	memeber variable
 *******************************************************************************/
-Entry::Entry(std::string* tb, std::string* mh, int wc, int d, int m)
+Entry::Entry(std::string* tb, std::string mh, int wc, int d, int m)
 {
 	this->textBody = tb;
 	this->madeHappy = mh;
@@ -132,7 +132,7 @@ std::string Entry::getMadeHappy()
 
 /*******************************************************************************
  * Function:			void setMadeHappy(string)
- * Description:Sets the string for made happy 
+ * Description:Sets the string for made happy
 *******************************************************************************/
 void Entry::setMadeHappy(std::string happy)
 {
