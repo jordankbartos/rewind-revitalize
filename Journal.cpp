@@ -89,7 +89,7 @@ Journal::Journal(std::string filename)
 		std::getline(this->EntriesLog,*textBody);
 
 		//get madeHappy
-		std::string madeHappy = new std::string;
+		std::string madeHappy;
 		std::getline(this->EntriesLog, madeHappy, '\n');
 
 		//generate a journal entry object and add it to the vector of
