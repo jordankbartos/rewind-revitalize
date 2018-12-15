@@ -90,7 +90,7 @@ int main()
 
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
-		 /*
+		 
 		default:
 			std::cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
