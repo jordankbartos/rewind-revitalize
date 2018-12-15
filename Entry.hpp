@@ -31,7 +31,7 @@ class Entry
 {
 	private:
 		std::string* textBody;
-		std::string* madeHappy;
+		std::string madeHappy;
 		int wordCount;
 		int date;
 		int mood;
@@ -52,8 +52,8 @@ class Entry
 		int getDate();
 		void setMood(int);
 		int getMood();
-		std::string* getMadeHappy();
-		void setMadeHappy(std::string*);
+		std::string getMadeHappy();
+		void setMadeHappy(std::string);
 
 		//other functions
 		std::string getPrompt();

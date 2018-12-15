@@ -125,9 +125,18 @@ int Entry::getMood()
  * Description: returns a pointer to the "what made you happy today" string from
  * the journal entry
 *******************************************************************************/
-std::string* Entry::getMadeHappy()
+std::string Entry::getMadeHappy()
 {
 	return this->madeHappy;
+}
+
+/*******************************************************************************
+ * Function:			void setMadeHappy(string)
+ * Description:Sets the string for made happy 
+*******************************************************************************/
+void Entry::setMadeHappy(std::string happy)
+{
+	this->madeHappy = happy;
 }
 
 /*******************************************************************************
