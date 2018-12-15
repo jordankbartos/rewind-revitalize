@@ -15,18 +15,17 @@ int main()
 	/* TESTING AREA */
 	/*journal->displayEntry(1234567890);
 	journal->encryptAndSave();*/
-/*
+
 	char selection;			// To hold user menu selections.
 	std::string* password = new std::string();
 	bool validPassword = false;
 
 	// Display the main menu.
 	//displayIntro();
-*/
+
 	// Create the journal.
 	Journal* journal = new Journal("sampleLog.log");
-	journal->addEntry();
-/*
+
 
 	do {
 
@@ -86,7 +85,7 @@ int main()
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
-			 /*
+
 			break;
 
 		/* EXCEPTION HANDLING:
@@ -106,7 +105,7 @@ int main()
 	displayOutro();
 
 	// Be sure to re-encrypt the user's data before exiting!
-	journal->encryptAndSave(); */
+	journal->encryptAndSave();
 	delete journal;
 
 	pause();
