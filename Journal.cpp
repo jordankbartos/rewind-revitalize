@@ -192,8 +192,13 @@ void Journal::addEntry()
 	cout << "Date: " << date << endl;
 	newEntry->setDate(date);
 
-	//WHen do we do getMOOD
+	//Mood
+
 	//Clear the clearTheScreen
+	clearTheScreen();
+	cout << "How would you rate your mood? (1 -5)" << endl;
+	int mood = checkValidity(1, 5);
+	
 	//Prompt the user for what made them happy
 	//Store in happy
 	//clear screen
