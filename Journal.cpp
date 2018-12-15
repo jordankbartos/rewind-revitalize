@@ -6,7 +6,7 @@
 *******************************************************************************/
 
 #include "Journal.hpp"
-#include <iostream>
+
 
 
 
@@ -235,7 +235,7 @@ void Journal::addEntry()
 	int mood = checkValidity(1, 5);
 	newEntry->setMood(mood);
 	clearTheScreen();
-	
+
 	//Prompt the user for what made them happy
 	cout<< endl << endl << "In one sentence, what is something that made you happy today? " << endl;
 	string getter;
