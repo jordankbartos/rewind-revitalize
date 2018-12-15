@@ -194,7 +194,7 @@ void Journal::displayEntry(int search)
 			std::cout << "Mood: "
 					<< this->entries.at(i)->getMood() << "\n";
 			std::cout << "\nMade me happy:\n"
-					<< *this->entries.at(i)->getMadeHappy() << "\n\n";
+					<< this->entries.at(i)->getMadeHappy() << "\n\n";
 			std::cout << "Entry:\n"
 					<< *this->entries.at(i)->getTextBody() << std::endl;
 
