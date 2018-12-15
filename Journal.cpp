@@ -26,7 +26,7 @@ Journal::Journal()
 
 /*******************************************************************************
  * Function: 			Journal(std::string*)
- * Description: a constructor for a journal object that takes a pointer to a 
+ * Description: a constructor for a journal object that takes a pointer to a
  * 	string that corresponds to a journal log file and populates the journal
  * 	with entries from the log file
 *******************************************************************************/
@@ -88,7 +88,7 @@ Journal::Journal(std::string filename)
 
 		//generate a journal entry object and add it to the vector of
 		//journal entries
-		this->entries.push_back(new Entry(textBody, madeHappy, wordCount, 
+		this->entries.push_back(new Entry(textBody, madeHappy, wordCount,
 				entryDate, mood));
 
 		//peek at next character to see if loop loop needs to end
@@ -154,15 +154,15 @@ void Journal::displayEntry(int search)
 		{
 			clearTheScreen();
 
-			std::cout << "Date: " 
+			std::cout << "Date: "
 					<< this->entries.at(i)->getDate() << "\n";
 			std::cout << "Mood: "
 					<< this->entries.at(i)->getMood() << "\n";
-			std::cout << "\nMade me happy:\n" 
+			std::cout << "\nMade me happy:\n"
 					<< *this->entries.at(i)->getMadeHappy() << "\n\n";
 			std::cout << "Entry:\n"
 					<< *this->entries.at(i)->getTextBody() << std::endl;
-			
+
 			pause();
 		}
 	}
@@ -177,6 +177,32 @@ void Journal::displayEntry(int search)
 *******************************************************************************/
 void Journal::addEntry()
 {
+	//https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+	std::time_t t = time(0);
+	std::tm* now = std::localtime(&t);
+	Entry newEntry = new Entry();
+
+	//Date
+	//day
+	int date = (now->tm_day) * 1000000;
+	//Month
+	date += ((now->tm_mon + 1) * 10000);
+	//year
+	date += (now->tm_year + 1900);
+	cout << "Date: " << date << endl;
+	newEntry->setDate(date);
+
+	//WHen do we do getMOOD
+	//Clear the clearTheScreen
+	//Prompt the user for what made them happy
+	//Store in happy
+	//clear screen
+	//Prompt the user for main entry
+	//Get input for main entry
+	// looking forward to stuff?
+	//Count the words
+	//Create entry from this stuff and get it into journal?
+
 }
 
 /*******************************************************************************
