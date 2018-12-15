@@ -120,7 +120,7 @@ char validateMenuChoice(char max) {
 /*******************************************************************************
 * Function					char getYesNoAnswer()
 * Description: gets a valid yes or no answer from the user. Returns a 'y' if
-* the user answers y/Y or a 'n' if the user answers n/N. 
+* the user answers y/Y or a 'n' if the user answers n/N.
 *******************************************************************************/
 char getYesNoAnswer() {
 
@@ -166,3 +166,75 @@ char getYesNoAnswer() {
 	return answer;
 }
 
+/*******************************************************************************
+* Function					int checkValidity(int, int)
+* Description: returns an integer between the two passed argument integers
+*******************************************************************************/
+
+int checkValidity(int lower, int upper)
+{
+	string getter;
+	bool isValid = false;
+	bool isNegative = false;
+
+	do
+	{
+		cout << endl;
+		getline(cin, getter);
+		for(int i = 0; i < getter.length(); i++)
+		{
+			//If hyphen is in front adjust negative flag
+			if(getter[0] == '-' && !isNegative)
+			{
+				isNegative = true;
+				i++
+			}
+
+			//Check all other chars or digit
+			if (!(isdigit(getter[i])))
+			{
+				isValid = false;
+				break;
+			}
+			else
+			{
+				isValid = true;
+			}
+		}
+
+		//If it is a digit, break
+		if(isValid)
+		{
+			break;
+		}
+		cin.clear();
+		cout << "Input not valid" << endl;
+	} while (!isValid);
+
+	//Convert to int and determine if it is in range
+	if(isNegative)
+	{
+		getter = getter.substr(1, (getter.lenght() - 1));
+	}
+
+	int userInput = std::stoi(getter);
+
+	if (isNegative)
+	{
+		userInput *= -1;
+	}
+
+	if(userInput >= lower && userInput <= upper)
+	{
+		isValid = true;
+	}
+	else
+	{
+		cout << "Please enter a number between " << lower << " and " << upper << endl;
+		cin.clear();
+		userInput = checkValidity(lower, upper);
+	}
+
+	return userInput;
+
+}
