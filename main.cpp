@@ -15,6 +15,7 @@ using std::ofstream;
 
 int main()
 {
+	srand(time(0));
 	char selection;			// To hold user menu selections.
 	string username;
 	string password;
