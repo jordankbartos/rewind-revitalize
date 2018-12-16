@@ -45,7 +45,6 @@ bool Journal::userNameExists(std::string username)
 {
 	// Get the full filename
 	std::string filename = username + ".log";
-	std::cout << filename << std::endl;
 
 	// Open the file.
 	std::ifstream ifs;
@@ -75,6 +74,7 @@ bool Journal::userNameExists(std::string username)
 		}
 		return false;
 	}
+	this->encryptedFile = username + ".log";
 	return true;
 }
 
@@ -182,8 +182,6 @@ void Journal::encryptAndSave(std::string password)
 	//generate the encryption key from the password
 	int key = createKey(password);
 
-	std::cout << "encryptionKey: " << key << std::endl;
-
 	//char will receive one character at a time from the entries log for
 	//encryption and storage in the encrypted file
 	char ch = 0;
@@ -191,14 +189,20 @@ void Journal::encryptAndSave(std::string password)
 	//ofstream object for storing contents
 	std::ofstream outputFile;
 	outputFile.open(this->encryptedFile, std::ofstream::trunc);
-
-	this->EntriesLog.open("sampleLog.log");
-
-	while(EntriesLog >> ch)
+	if(!outputFile)
 	{
-		ch ^= key;
+		std::cout << "Error opening storage file." << std::endl;
+		return;
+	}
+
+	//encrypt and save the password
+	for(unsigned int i = 0; i < password.length(); ++i)
+	{
+		ch = static_cast<int>(password.at(i)) ^ key;
 		outputFile.put(ch);
 	}
+	
+	//encrypt and save the contents of each entry
 
 
 	outputFile.close();
@@ -227,6 +231,7 @@ void Journal::decryptAndLoad(std::string password)
 		ch ^= key;
 		decryptedFile.put(ch);
 	}
+	pause();
 
 	/*
 	//attempt to read the password from the decrypted file
