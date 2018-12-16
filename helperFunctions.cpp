@@ -12,9 +12,8 @@
 * Description: Displays the intro the program.
 *******************************************************************************/
 void displayIntro() {
+	printFileContents("REWIND-REVITALIZE.txt");
 
-	std::cout << "\n\nWELCOME!\n\n"
-		<< "to Rewind Revitalize!\n";
 }
 
 /*******************************************************************************
@@ -317,3 +316,46 @@ void encryptString(std::string& toEncrypt, int key)
 		toEncrypt.at(i) ^= key;
 	}
 }
+
+
+/**************************************************************************************
+ * Function			printFileContents(string)
+ * Prints all the contents of a file
+**************************************************************************************/
+void printFileContents(std::string str)
+{
+	std::string printString;
+	std::ifstream ifs(str);
+
+	if(ifs)
+	{
+		while(ifs && ifs.peek() != EOF)
+		{
+			getline(ifs,printString);
+			std::cout << printString << std::endl;
+		}
+		
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
