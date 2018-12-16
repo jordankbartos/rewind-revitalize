@@ -82,7 +82,7 @@ void Entry::countWords()
 {
 	std::string counter = getTextBody();
 	int len = counter.length();
-	int words = 1; // Otherwise wouldn't count the last word.
+	int words = 0; // Otherwise wouldn't count the last word.
 	for(int i = 0; i < len; i++)
 	{
 		if(counter[i] == ' ' && counter[i + 1] != ' ')
