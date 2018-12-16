@@ -16,10 +16,10 @@ Journal::Journal()
 {
 	this->encryptedFile = "";
 	this->numEntries = 0;
-	this->avgWordCount = 0;
+	this->avgWordCount = 0.0;
 	this->longestPost = 0;
 	this->shortestPost = INT_MAX;
-	this->avgMood = 0;
+	this->avgMood = 0.0;
 	this->totalMood = 0;
 	this->totalWord = 0;
 }
@@ -201,11 +201,11 @@ void Journal::encryptAndSave(std::string password)
 		ch = static_cast<int>(password.at(i)) ^ key;
 		outputFile.put(ch);
 	}
-	
+
 	//insert a "group seperator character" into the file
 	ch = static_cast<char>(29) ^ key;
 	outputFile.put(ch);
-	
+
 	//encrypt and save the contents of each entry
 	std::string toEncrypt;
 	int intToEncrypt;
@@ -274,7 +274,7 @@ void Journal::decryptAndLoad(std::string password)
 	char ch;
 	char groupSeparatorChar = static_cast<char>(29);
 	std::string str;
-	
+
 	//open a file and decrypt EntriesLog into it
 	std::ofstream ofs;
 
@@ -299,7 +299,7 @@ void Journal::decryptAndLoad(std::string password)
 		ch ^= key;
 		ofs << ch;
 	}
-		
+
 	this->EntriesLog.close();
 	ofs.close();
 
@@ -313,7 +313,7 @@ void Journal::decryptAndLoad(std::string password)
 
 	//ignore the password entry
 	std::getline(ifs, str, groupSeparatorChar);
-	
+
 	//read the contents of an entry, generate a new entry object, append it
 	//to the vector of entries, and continue until the EOF is reached
 	if(!(ifs && ifs.peek() != EOF))
@@ -350,12 +350,12 @@ void Journal::decryptAndLoad(std::string password)
 		}
 
 		//read date
-		int date = 0; 
+		int date = 0;
 		ifs >> date;
 
 		//read mood
 		int mood = 0;
-		ifs >> mood;	
+		ifs >> mood;
 		this->totalMood += mood;
 
 		//ignore the newline that comes after mood
@@ -364,12 +364,12 @@ void Journal::decryptAndLoad(std::string password)
 		//generate new Entry and add to vector of entries
 		this->entries.push_back(new Entry(textBody,madeHappy,wordCount,date,mood));
 	}
-	
+
 	//close both files
 	ifs.close();
 	remove("tempUnEncryp.log");
-	
-	
+
+
 }
 
 /*******************************************************************************
@@ -472,12 +472,21 @@ void Journal::addEntry()
 	totalWord += words;
 	if(words > this->getLongestPost())
 	{
-		this->longestPost = words;
+		this->setLongestPost(words);
 	}
 	if(words < this->getShortestPost() || this->getShortestPost() == 0)
 	{
-		this->shortestPost = words;
+		this->setShortestPost(words);
 	}
+	//Set average words
+	double avgWords = static_cast<double>(this->getTotalWord());
+	double wordsResult = avgWords / this->getNumEntries();
+	this->setAvgWordCount(wordsResult);
+
+	//Set averageMood
+	double moodsAvg = static_cast<double>(this->getTotalMood());
+	double moodResult = moodsAvg / this->getNumEntries();
+	this->setAvgMood(moodResult);
 
 }
 
@@ -489,9 +498,6 @@ int Journal::getNumEntries()
 
 double Journal::getAvgWordCount()
 {
-	double words = static_cast<double>(this->totalWord);
-	double result = words / this->getNumEntries();
-	this->avgWordCount = result;
 	return this->avgWordCount;
 }
 
@@ -507,12 +513,43 @@ int Journal::getShortestPost()
 
 double Journal::getAvgMood()
 {
-	double moods = static_cast<double>(this->totalMood);
-	double result = moods / this->getNumEntries();
-	this->avgMood = result;
 	return this->avgMood;
 }
 
+int Journal::getTotalMood()
+{
+	return this->totalMood;
+}
+
+int Journal::getTotalWord()
+{
+	return this->totalWord;
+}
+
+void Journal::setNumEntries(int num)
+{
+	this->numEntries = num;
+}
+
+void Journal::setAvgWordCount(double word)
+{
+	this->avgWordCount = word;
+}
+
+void Journal::setLongestPost(int l)
+{
+	this->longestPost = l;
+}
+
+void Journal::setShortestPost(int s)
+{
+	this->shortestPost = s;
+}
+
+void Journal::setAvgMood(double mood)
+{
+	this->avgMood = mood;
+}
 /*******************************************************************************
  * Function:
  * Description:

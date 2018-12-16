@@ -136,7 +136,7 @@ char validateMenuChoice(char max) {
 		if (validChoice == false) {
 
 			std::cout << "\nSorry, you must select an option between"
-				<< "1 and " << max << ". Please re-enter selection.\n";
+				<< " 1 and " << max << ". Please re-enter selection.\n";
 
 			// Clear stringstream buffer to prepare for next loop.
 			ss.clear();
