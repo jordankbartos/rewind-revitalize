@@ -465,21 +465,21 @@ void Journal::addEntry()
 	totalWord += words;
 	if(words > this->getLongestPost())
 	{
-		this->longestPost = words;
+		this->setLongestPost(words);
 	}
 	if(words < this->getShortestPost() || this->getShortestPost() == 0)
 	{
-		this->shortestPost = words;
+		this->setShortestPost(words);
 	}
 	//Set average words
-	double avgWords = static_cast<double>(this->totalWord);
+	double avgWords = static_cast<double>(this->getTotalWord());
 	double wordsResult = avgWords / this->getNumEntries();
-	this->avgWordCount = wordsResult;
+	this->setAvgWordCount(wordsResult);
 
 	//Set averageMood
-	double moodsAvg = static_cast<double>(this->totalMood);
+	double moodsAvg = static_cast<double>(this->getTotalMood());
 	double moodResult = moodsAvg / this->getNumEntries();
-	this->avgMood = moodResult;
+	this->setAvgMood(moodResult);
 
 }
 
@@ -509,6 +509,40 @@ double Journal::getAvgMood()
 	return this->avgMood;
 }
 
+int Journal::getTotalMood()
+{
+	return this->totalMood;
+}
+
+int Journal::getTotalWord()
+{
+	return this->totalWord;
+}
+
+void Journal::setNumEntries(int num)
+{
+	this->numEntries = num;
+}
+
+void Journal::setAvgWordCount(double word)
+{
+	this->avgWordCount = word;
+}
+
+void Journal::setLongestPost(int long)
+{
+	this->longestPost = long;
+}
+
+void Journal::setShortestPost(int short)
+{
+	this->shortestPost = short;
+}
+
+void Journal::setAvgMood(double mood)
+{
+	this->avgMood = mood;
+}
 /*******************************************************************************
  * Function:
  * Description:
