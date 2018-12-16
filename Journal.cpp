@@ -245,7 +245,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for main entry
-	std::string prompt = getPrompt();
+	std::string = getPrompt();
 	cout << prompt << endl << endl;
 	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
@@ -278,7 +278,7 @@ void Journal::addEntry()
  * Description: returns a string for a randomly selected prompt. Prompts are
  * stored in a text file and the function randomly decides which line to use.
 *******************************************************************************/
-std::string getPrompt()
+std::string Journal::getPrompt()
 {
 	//Initialize random number and open prompt file
 	int num = rand();

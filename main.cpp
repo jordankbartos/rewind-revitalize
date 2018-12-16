@@ -12,6 +12,7 @@
 
 int main()
 {
+	srand(time(0));
 	/* TESTING AREA */
 	/*journal->displayEntry(1234567890);
 	journal->encryptAndSave();*/
