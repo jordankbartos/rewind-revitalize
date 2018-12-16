@@ -529,14 +529,14 @@ void Journal::setAvgWordCount(double word)
 	this->avgWordCount = word;
 }
 
-void Journal::setLongestPost(int long)
+void Journal::setLongestPost(int l)
 {
-	this->longestPost = long;
+	this->longestPost = l;
 }
 
-void Journal::setShortestPost(int short)
+void Journal::setShortestPost(int s)
 {
-	this->shortestPost = short;
+	this->shortestPost = s;
 }
 
 void Journal::setAvgMood(double mood)
