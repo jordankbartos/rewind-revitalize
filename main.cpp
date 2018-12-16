@@ -114,7 +114,7 @@ int main()
 			 * decrypted password from the log file, attempt to decrypt
 			 * with the given password, and then validate that they are
 			 * the same. */
-			if (journal->validatePassword(password)) {
+			if (journal->validatePassword(username, password)) {
 
 				validPassword = true;
 			}
