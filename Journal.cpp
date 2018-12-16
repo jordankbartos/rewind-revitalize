@@ -124,10 +124,10 @@ Journal::Journal(std::string filename)
  * Function:			getPassword()
  * Description: returns a pointer to the password member variable
 *******************************************************************************/
-std::string* Journal::getPassword()
-{
-	return this->password;
-}
+//std::string* Journal::getPassword()
+//{
+	//return this->password;
+//}
 
 /*******************************************************************************
  * Function:			void encryptAndSave()
