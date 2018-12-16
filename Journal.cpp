@@ -95,7 +95,7 @@ void Journal::rewind()
 	{
 		int size = entries.size();
 		int num = rand() % size;
-		Entry* temp = entries.at(num);
+		Entry* temp = (entries.at(num));
 		int date = temp->getDate();
 		clearTheScreen();
 		int month = date / 1000000;
@@ -303,10 +303,7 @@ void Journal::addEntry()
 	this->entries.push_back(newEntry);
 	pause();
 	delete newEntry;
-	std::string happy = (this->entries.at(0))->getMadeHappy();
-	cout << "happy: " << happy << endl;
 
-	pause();
 }
 
 // Getters and setters
