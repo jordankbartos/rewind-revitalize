@@ -16,7 +16,7 @@
 Entry::Entry()
 {
 	this->textBody = NULL;
-	this->madeHappy = NULL;
+	this->madeHappy ="";
 	this->wordCount = 0;
 	this->date = 0;
 	this->mood = 0;
@@ -27,7 +27,7 @@ Entry::Entry()
  * Description: constructor for an Entry object that takes parameters for each
  * 	memeber variable
 *******************************************************************************/
-Entry::Entry(std::string* tb, std::string* mh, int wc, int d, int m)
+Entry::Entry(std::string* tb, std::string mh, int wc, int d, int m)
 {
 	this->textBody = tb;
 	this->madeHappy = mh;
@@ -44,7 +44,6 @@ Entry::Entry(std::string* tb, std::string* mh, int wc, int d, int m)
 Entry::~Entry()
 {
 	delete this->textBody;
-	delete this->madeHappy;
 }
 
 /*******************************************************************************
@@ -125,9 +124,18 @@ int Entry::getMood()
  * Description: returns a pointer to the "what made you happy today" string from
  * the journal entry
 *******************************************************************************/
-std::string* Entry::getMadeHappy()
+std::string Entry::getMadeHappy()
 {
 	return this->madeHappy;
+}
+
+/*******************************************************************************
+ * Function:			void setMadeHappy(string)
+ * Description:Sets the string for made happy
+*******************************************************************************/
+void Entry::setMadeHappy(std::string happy)
+{
+	this->madeHappy = happy;
 }
 
 /*******************************************************************************
