@@ -137,35 +137,7 @@ void Entry::setMadeHappy(std::string happy)
 	this->madeHappy = happy;
 }
 
-/*******************************************************************************
- * Function:			string getPrompt()
- * Description: returns a string for a randomly selected prompt. Prompts are
- * stored in a text file and the function randomly decides which line to use.
-*******************************************************************************/
-std::string getPrompt()
-{
-	//Initialize random number and open prompt file
-	int num = rand();
-	fstream input;
-	std::string prompt;
-	input.open("prompts.txt");
-	if(!input)
-	{
-		cout << "File open error" << endl;
-		return "No file found";
-	}
 
-	//Get random num in range
-	num = num % 40 + 1;
-	//Loop until the correct line is found
-	for(int i = 0; i < num; i++)
-	{
-		getline(input, prompt);
-	}
-	input.close();
-	return prompt;
-
-}
 
 /*******************************************************************************
  * Function:

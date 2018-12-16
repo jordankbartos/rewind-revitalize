@@ -50,6 +50,7 @@ class Journal
 		void decryptAndLoad();
 		void displayEntry(int);
 		void addEntry();
+		std::string getPrompt();
 
 };
 

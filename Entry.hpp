@@ -56,7 +56,7 @@ class Entry
 		void setMadeHappy(std::string);
 
 		//other functions
-		std::string getPrompt();
+
 };
 
 
