@@ -33,7 +33,7 @@ class Journal
 		std::fstream EntriesLog; 
 
 		// Private methods.
-		int createKey(std::string);
+		//int createKey(std::string);
 
 	protected:
 	public:
@@ -49,8 +49,9 @@ class Journal
 		int getAvgMood();
 
 		//other functions
+		int createKey(std::string);
 		bool userNameExists(std::string);
-		bool validatePassword(std::string);
+		bool validatePassword(std::string, std::string);
 		void rewind();
 		void encryptAndSave(std::string);
 		void decryptAndLoad(std::string);
