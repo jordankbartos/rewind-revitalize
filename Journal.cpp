@@ -101,7 +101,7 @@ void Journal::rewind()
 		int month = date / 1000000;
 		int day = (date - (month * 1000000)) / 10000;
 		int year = date - (month * 1000000) - (day * 10000);
-		cout << "On " << month << "/" << date << "/" << year << endl;
+		cout << "On " << month << "/" << day << "/" << year << endl;
 		std::string happy = temp->getMadeHappy();
 		cout << happy << endl;
 		cout << "made you happy!" << endl;
@@ -271,6 +271,10 @@ void Journal::addEntry()
 	newEntry->setMadeHappy(tempString);
 	clearTheScreen();
 
+
+	cout << "testing: made happy: " <<  newEntry->getMadeHappy() << endl;
+	pause();
+	clearTheScreen();
 	//Prompt the user for main entry
 	std::string prompt = getPrompt();
 	cout << prompt << endl << endl;
@@ -299,6 +303,9 @@ void Journal::addEntry()
 	this->entries.push_back(newEntry);
 	pause();
 	delete newEntry;
+	std::string happy = this->entries.at(0)->getMadeHappy();
+	cout << "happy: " << happy << endl;
+	pause();
 }
 
 // Getters and setters
