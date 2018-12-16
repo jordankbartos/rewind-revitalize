@@ -85,8 +85,8 @@ Journal::Journal(std::string filename)
 		int mood = stoi(tmp);
 
 		//get textBody
-		std::string* textBody = new std::string;
-		std::getline(this->EntriesLog,*textBody);
+		std::string textBody;
+		std::getline(this->EntriesLog,textBody);
 
 		//get madeHappy
 		std::string madeHappy;
@@ -196,7 +196,7 @@ void Journal::displayEntry(int search)
 			std::cout << "\nMade me happy:\n"
 					<< this->entries.at(i)->getMadeHappy() << "\n\n";
 			std::cout << "Entry:\n"
-					<< *this->entries.at(i)->getTextBody() << std::endl;
+					<< this->entries.at(i)->getTextBody() << std::endl;
 
 			pause();
 		}
@@ -237,7 +237,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
-	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
+	cout << "In one sentence, what is something that made you happy today? " << endl;
 	std::string tempString;
 	getline(cin, tempString);
 	//Store in happy
@@ -257,7 +257,7 @@ void Journal::addEntry()
 		getline(cin, tempString);
 		if(tempString != "QUIT")
 		{
-			body =+ tempString;
+			body += tempString;
 		}
 		else
 		{
@@ -270,8 +270,37 @@ void Journal::addEntry()
 	//Count the words
 	//Store it
 	this->entries.push_back(newEntry);
-	pause();
+	
 	delete newEntry;
+}
+/*******************************************************************************
+ * Function:			string getPrompt()
+ * Description: returns a string for a randomly selected prompt. Prompts are
+ * stored in a text file and the function randomly decides which line to use.
+*******************************************************************************/
+std::string Journal::getPrompt()
+{
+	//Initialize random number and open prompt file
+	int num = rand();
+	fstream input;
+	std::string prompt;
+	input.open("prompts.txt");
+	if(!input)
+	{
+		cout << "File open error" << endl;
+		return "No file found";
+	}
+
+	//Get random num in range
+	num = num % 40 + 1;
+	//Loop until the correct line is found
+	for(int i = 0; i < num; i++)
+	{
+		getline(input, prompt);
+	}
+	input.close();
+	return prompt;
+
 }
 
 /*******************************************************************************

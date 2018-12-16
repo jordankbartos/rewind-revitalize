@@ -12,6 +12,7 @@
 
 int main()
 {
+	srand(time(0));
 	/* TESTING AREA */
 	/*journal->displayEntry(1234567890);
 	journal->encryptAndSave();*/
@@ -26,6 +27,8 @@ int main()
 	displayIntro();
 
 	// Create the journal.
+
+
 	Journal* journal = new Journal();
 
 	// This do-while loop handles the username.
@@ -158,10 +161,12 @@ int main()
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
+
 			break;
 
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
+
 		default:
 			std::cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
@@ -176,7 +181,7 @@ int main()
 	displayOutro();
 
 	// Be sure to re-encrypt the user's data before exiting!
-	journal->encryptAndSave();
+	journal->encryptAndSave(); 
 	delete journal;
 
 	pause();
