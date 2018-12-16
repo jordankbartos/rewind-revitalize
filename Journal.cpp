@@ -45,7 +45,7 @@ bool Journal::userNameExists(std::string username)
 {
 	// Get the full filename
 	std::string filename = username + ".log";
-	
+
 	// Open the file.
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
@@ -61,7 +61,7 @@ bool Journal::userNameExists(std::string username)
 
 		// Delete the file and return false.
 		if (remove(filename.c_str()) != 0) {
-			
+
 			// ERROR HANDLING: couldn't delete file for some reason.
 			std::cout << "\nError deleting file.\n";
 		}
@@ -87,11 +87,11 @@ bool Journal::validatePassword(std::string password)
 
 /*******************************************************************************
 * Function: void rewind()
-* Description: 
+* Description:
 *******************************************************************************/
 void Journal::rewind()
 {
-	if(this->entries.())
+	if(this->entries.empty())
 	{
 		int size = entries.size();
 		int num = rand() % size;
@@ -101,7 +101,7 @@ void Journal::rewind()
 		int month = (date - (day * 1000000)) / 10000;
 		int year = date - (month * 10000);
 		cout << "On " << day << "/" << month << "/" << year << endl;
-		cout << this->entries[i]->getMadeHappy() << endl;
+		cout << this->entries[num]->getMadeHappy() << endl;
 		cout << "made you happy!" << endl;
 		pause();
 	}
@@ -166,12 +166,12 @@ void Journal::encryptAndSave(std::string password)
  * Description: decrypts and loads all the journal entries in a journal log file
  * 	instantiating each journal entry as a new Entry object and adding each one
  * 	to the array of Entry* entries member variable. Uses the password as a
- * 	decryption key. This function will not be called 
+ * 	decryption key. This function will not be called
 *******************************************************************************/
 void Journal::decryptAndLoad(std::string password)
 {
 	int key = createKey(password);
-	
+
 	//attempt to decrypt the file
 	//make a txt file to store decrypted contents
 	std::ofstream decryptedFile("decryptedFile.txt");
@@ -184,7 +184,7 @@ void Journal::decryptAndLoad(std::string password)
 		ch ^= key;
 		decryptedFile.put(ch);
 	}
-	
+
 	/*
 	//attempt to read the password from the decrypted file
 	std::string tmp;
