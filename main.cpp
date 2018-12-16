@@ -31,11 +31,7 @@ int main()
 
 	// Create the journal.
 	Journal* journal = new Journal();
-	journal->rewind();
-	journal->addEntry();
-	journal->rewind();
 
-/*
 	// This do-while loop handles the username.
 	do {
 
@@ -45,13 +41,13 @@ int main()
 
 		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */
-/*		if (!journal->userNameExists(username)) {
+		if (!journal->userNameExists(username)) {
 
 			selection = ' ';
 
 			/* If not found, prompt to make a new account.
 			 * If user answer no, loop again to prompt for username. */
-/*			std::cout << "\nUsername not found. "
+			std::cout << "\nUsername not found. "
 				<< "Do you want to make a new account (Y/N)? ";
 
 			// answer will be 'y' or 'n'
@@ -59,7 +55,7 @@ int main()
 
 			/* If yes openUserFile should handle creating a new log file
 			 * with the given username */
-/*			if (selection == 'y') {
+			if (selection == 'y') {
 
 				// Open a file with the name of the username.
 				string filename = username + ".log";
@@ -118,7 +114,7 @@ int main()
 			 * decrypted password from the log file, attempt to decrypt
 			 * with the given password, and then validate that they are
 			 * the same. */
-/*			if (journal->validatePassword(password)) {
+			if (journal->validatePassword(password)) {
 
 				validPassword = true;
 			}
@@ -169,11 +165,11 @@ int main()
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
-/*			break;
+			break;
 
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
-/*		default:
+		default:
 			cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
 			pause();
@@ -189,8 +185,7 @@ int main()
 	// Be sure to re-encrypt the user's data before exiting!
 	journal->encryptAndSave(password);
 	delete journal;
-*/
-	delete journal;
+
 	pause();
 	return 0;
 }
