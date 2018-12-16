@@ -89,6 +89,10 @@ void Entry::countWords()
 		{
 			words++;
 		}
+		if(counter[i] == '\n')
+		{
+			words++;
+		}
 	}
 
 	this->wordCount = words;

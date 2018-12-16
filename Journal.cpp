@@ -260,6 +260,7 @@ void Journal::addEntry()
 		if(tempString != "QUIT")
 		{
 			body += tempString;
+			body += '\n';
 		}
 		else
 		{
