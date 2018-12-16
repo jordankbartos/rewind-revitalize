@@ -257,7 +257,7 @@ void Journal::addEntry()
 		getline(cin, tempString);
 		if(tempString != "QUIT")
 		{
-			body =+ tempString;
+			body += tempString;
 		}
 		else
 		{
