@@ -283,7 +283,7 @@ int countWords(std::string s)
 		{
 			words++;
 		}
-		if(counter[i] == '\n')
+		if( s[i] == '\n')
 		{
 			words++;
 		}
