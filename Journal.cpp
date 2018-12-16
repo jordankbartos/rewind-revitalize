@@ -271,6 +271,24 @@ void Journal::addEntry()
 	newEntry->countWords();
 	cout << "Words: " << newEntry->getWordCount() << endl;
 	pause();
+
+	//Testing display the info
+	clearTheScreen();
+
+	cout << "Happy line: " << endl;
+	cout << newEntry->getMadeHappy();
+	pause();
+
+	clearTheScreen();
+
+	cout << "Mood: " << newEntry->getMood() << endl;
+	pause();
+
+	clearTheScreen();
+	cout << "Main: " << endl;
+	cout << endl << newEntry->getTextBody() << endl;
+
+	pause();
 	this->entries.push_back(newEntry);
 
 	delete newEntry;
