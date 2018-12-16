@@ -13,44 +13,45 @@
 #include <fstream>
 #include <vector>
 #include "Entry.hpp"
-#include "helperFunctions.hpp"
 
 class Journal
 {
 	private:
 		std::string encryptedFile;
 		std::vector<Entry*> entries;	 	//a pointer to an array of entries
+
 		int numEntries;
 		double avgWordCount;
 		int longestPost;
 		int shortestPost;
-		// int avgMood; ??
+		int avgMood;
 
 		std::fstream EntriesLog; 		//a pointer to an fstream object for 
-									//saving/loading a log file
+
+		// Private methods.
+		int createKey(std::string);
+
 	protected:
 	public:
 		//constructors and destructors
 		Journal();
-		Journal(std::string);
+		//Journal(std::string);
 		~Journal();
 
 		//getters and setters
-		// std::string getPassword();	REMOVE
 		int getNumEntries();
 		double getAvgWordCount();
 		int getLongestPost();
 		int getShortestPost();
-		void getAuthor();
-		// int getAvgMood(); ??
+		int getAvgMood();
 
 		//other functions
 		bool userNameExists(std::string);
-	    void openUserFile(std::string);
+	    std::ofstream& openUserFile(std::string);
 		bool validatePassword(std::string);
 		void rewind();			// gets a random happy memory.
-		void encryptAndSave();	// Encrypts the user data to 
-		void decryptAndLoad();
+		void encryptAndSave(std::string);	// Encrypts the user data to 
+		void decryptAndLoad(std::string);
 		void displayEntry(int);
 		void addEntry();
 		

@@ -15,7 +15,7 @@
 *******************************************************************************/
 Entry::Entry()
 {
-	this->textBody = NULL;
+	this->textBody = "";
 	this->madeHappy ="";
 	this->wordCount = 0;
 	this->date = 0;
@@ -142,7 +142,7 @@ void Entry::setMadeHappy(std::string happy)
  * Description: returns a string for a randomly selected prompt. Prompts are
  * stored in a text file and the function randomly decides which line to use.
 *******************************************************************************/
-std::string getPrompt()
+/*std::string getPrompt()
 {
 	//Initialize random number and open prompt file
 	int num = rand();
@@ -165,7 +165,7 @@ std::string getPrompt()
 	input.close();
 	return prompt;
 
-}
+}*/
 
 /*******************************************************************************
  * Function:

@@ -119,7 +119,7 @@ int main()
 	} while (!validPassword);
 
 	// If password was successful, decrypt the journal entries.
-	journal->decryptAndLoad();
+	journal->decryptAndLoad(password);
 
 	// Display the main menu.
 	do {
@@ -176,7 +176,7 @@ int main()
 	displayOutro();
 
 	// Be sure to re-encrypt the user's data before exiting!
-	journal->encryptAndSave();
+	journal->encryptAndSave(password);
 	delete journal;
 
 	pause();

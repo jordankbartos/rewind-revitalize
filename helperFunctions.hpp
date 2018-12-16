@@ -11,7 +11,8 @@ void clearTheScreen();
 void pause();
 char validateMenuChoice(char);
 char getYesNoAnswer();
-int checkValidity(int, int);
+int validateIntRange(int, int);
+std::string getPrompt();
 
 
 #endif
