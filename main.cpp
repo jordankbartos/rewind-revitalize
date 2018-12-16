@@ -31,9 +31,6 @@ int main()
 
 	// Create the journal.
 	Journal* journal = new Journal();
-	journal->rewind();
-	journal->addEntry();
-	journal->rewind();
 
 	// This do-while loop handles the username.
 	do {
