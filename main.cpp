@@ -68,7 +68,7 @@ int main()
 			}
 		}
 
-	} while (selection != 'n');
+	} while (selection != 'y');
 
 	// This do-while loop handles the user password.
 	do {

@@ -211,7 +211,7 @@ int validateIntRange(int lower, int upper)
 	{
 		cout << endl;
 		getline(cin, getter);
-		for(int i = 0; i < getter.length(); i++)
+		for(unsigned int i = 0; i < getter.length(); i++)
 		{
 			//If hyphen is in front adjust negative flag
 			if(getter[0] == '-' && !isNegative)
