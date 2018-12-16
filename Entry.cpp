@@ -23,11 +23,11 @@ Entry::Entry()
 }
 
 /*******************************************************************************
- * Function:			Entry(string*,string*,int,int,int)
+ * Function:			Entry(string,string,int,int,int)
  * Description: constructor for an Entry object that takes parameters for each
  * 	memeber variable
 *******************************************************************************/
-Entry::Entry(std::string* tb, std::string mh, int wc, int d, int m)
+Entry::Entry(std::string tb, std::string mh, int wc, int d, int m)
 {
 	this->textBody = tb;
 	this->madeHappy = mh;
@@ -43,24 +43,23 @@ Entry::Entry(std::string* tb, std::string mh, int wc, int d, int m)
 *******************************************************************************/
 Entry::~Entry()
 {
-	delete this->textBody;
 }
 
-/*******************************************************************************
- * Function: 			void setTextBody(std::string*)
+/******************************************************************************
+ * Function: 			void setTextBody(std::string)
  * Description: takes a pointer to a string and sets it as the textBody member
  * variable for the Entry object
 *******************************************************************************/
-void Entry::setTextBody(std::string* body)
+void Entry::setTextBody(std::string body)
 {
 	this->textBody = body;
 }
 
 /*******************************************************************************
- * Function: 			std::string* getTextBody();
+ * Function: 			std::string getTextBody();
  * Description: returns a pointer to the text body for the  journal entry
 *******************************************************************************/
-std::string* Entry::getTextBody()
+std::string Entry::getTextBody()
 {
 	return this->textBody;
 }
@@ -105,7 +104,7 @@ int Entry::getDate()
  * Function:			void setMood(int)
  * Description: sets the member variable mood
 *******************************************************************************/
-void Entry:: setMood(int m)
+void Entry::setMood(int m)
 {
 	this->mood = m;
 }
