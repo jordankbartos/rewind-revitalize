@@ -25,8 +25,9 @@ int main()
 
 	// Create the journal.
 	Journal* journal = new Journal("sampleLog.log");
+	journal->addEntry();
 
-
+/*
 	do {
 
 		// Prompt for the user password to do the decryption.
@@ -85,12 +86,12 @@ int main()
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
-
+/*
 			break;
 
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
-		 
+/*
 		default:
 			std::cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
@@ -105,7 +106,7 @@ int main()
 	displayOutro();
 
 	// Be sure to re-encrypt the user's data before exiting!
-	journal->encryptAndSave();
+	journal->encryptAndSave(); */
 	delete journal;
 
 	pause();
