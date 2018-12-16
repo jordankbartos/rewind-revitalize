@@ -54,9 +54,6 @@ class Entry
 		int getMood();
 		std::string getMadeHappy();
 		void setMadeHappy(std::string);
-
-		//other functions
-
 };
 
 

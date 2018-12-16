@@ -167,11 +167,11 @@ char getYesNoAnswer() {
 }
 
 /*******************************************************************************
-* Function					int checkValidity(int, int)
+* Function					int validateIntRange(int, int)
 * Description: returns an integer between the two passed argument integers
 *******************************************************************************/
 
-int checkValidity(int lower, int upper)
+int validateIntRange(int lower, int upper)
 {
 	std::string getter;
 	bool isValid = false;
@@ -232,9 +232,39 @@ int checkValidity(int lower, int upper)
 	{
 		cout << "Please enter a number between " << lower << " and " << upper << endl;
 		cin.clear();
-		userInput = checkValidity(lower, upper);
+		userInput = validateIntRange(lower, upper);
 	}
 
 	return userInput;
+
+}
+
+/*******************************************************************************
+* Function:			string getPrompt()
+* Description: returns a string for a randomly selected prompt. Prompts are
+* stored in a text file and the function randomly decides which line to use.
+*******************************************************************************/
+std::string getPrompt()
+{
+	//Initialize random number and open prompt file
+	int num = rand();
+	fstream input;
+	std::string prompt;
+	input.open("prompts.txt");
+	if (!input)
+	{
+		cout << "File open error" << endl;
+		return "No file found";
+	}
+
+	//Get random num in range
+	num = num % 40 + 1;
+	//Loop until the correct line is found
+	for (int i = 0; i < num; i++)
+	{
+		getline(input, prompt);
+	}
+	input.close();
+	return prompt;
 
 }
