@@ -45,13 +45,21 @@ bool Journal::userNameExists(std::string username)
 {
 	// Get the full filename
 	std::string filename = username + ".log";
+	std::cout << filename << std::endl;
 
 	// Open the file.
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
 
+	//if the filename does not exist, the file will not open
+	if(!ifs)
+	{
+		return false;
+	}
+
 	/* Check if the file is empty. If so this user has no username or password
 	 * recorded and is therefore a new user. */
+
 	std::string input;
 	getline(ifs, input);
 	ifs.close();
@@ -101,7 +109,7 @@ bool Journal::validatePassword(std::string username, std::string password)
 
 		// Attempt to decrypt the line with the encryption key.
 		char ch;
-		for (int i = 0; i < input.length(); i++)
+		for (unsigned int i = 0; i < input.length(); i++)
 		{
 			ch = input[i] ^ key;
 			decrypted += ch;
