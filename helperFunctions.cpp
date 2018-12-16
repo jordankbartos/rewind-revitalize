@@ -26,7 +26,7 @@ char displayMainMenu() {
 
 	std::cout << "\n\nMAIN MENU\n\n"
 		<< "1) Make a new journal entry\n"
-		<< "2) Show me a happy memory\n"
+		<< "2) REWIND to a happy memory\n"
 		<< "3) View lifetime statistics\n"
 		<< "4) Exit\n\n";
 
