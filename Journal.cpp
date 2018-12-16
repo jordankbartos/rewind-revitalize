@@ -16,10 +16,10 @@ Journal::Journal()
 {
 	this->encryptedFile = "";
 	this->numEntries = 0;
-	this->avgWordCount = 0;
+	this->avgWordCount = 0.0;
 	this->longestPost = 0;
 	this->shortestPost = INT_MAX;
-	this->avgMood = 0;
+	this->avgMood = 0.0;
 	this->totalMood = 0;
 	this->totalWord = 0;
 }
@@ -471,6 +471,15 @@ void Journal::addEntry()
 	{
 		this->shortestPost = words;
 	}
+	//Set average words
+	double avgWords = static_cast<double>(this->totalWord);
+	double wordsResult = avgWords / this->getNumEntries();
+	this->avgWordCount = wordsResult;
+
+	//Set averageMood
+	double moodsAvg = static_cast<double>(this->totalMood);
+	double moodResult = moodsAvg / this->getNumEntries();
+	this->avgMood = moodResult;
 
 }
 
@@ -482,18 +491,7 @@ int Journal::getNumEntries()
 
 double Journal::getAvgWordCount()
 {
-	if(this->getNumEntries() == 0)
-	{
-		this->avgWordCount = 0;
-		return this->avgWordCount;
-	}
-	else
-	{
-		double words = static_cast<double>(this->totalWord);
-		double result = words / this->getNumEntries();
-		this->avgWordCount = result;
-		return this->avgWordCount;
-	}
+	return this->avgWordCount;
 }
 
 int Journal::getLongestPost()
@@ -515,9 +513,6 @@ double Journal::getAvgMood()
 	}
 	else
 	{
-		double moods = static_cast<double>(this->totalMood);
-		double result = moods / this->getNumEntries();
-		this->avgMood = result;
 		return this->avgMood;
 	}
 }
