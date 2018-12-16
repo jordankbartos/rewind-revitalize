@@ -398,11 +398,11 @@ void Journal::addEntry()
 	numEntries++;
 	totalMood += mood;
 	totalWord += words;
-	if(words > this->longestPost)
+	if(words > this->getLongestPost())
 	{
 		this->longestPost = words;
 	}
-	if(words < this->shortestPost)
+	if(words < this->getShortestPost() || this->getShortestPost() == 0)
 	{
 		this->shortestPost = words;
 	}
