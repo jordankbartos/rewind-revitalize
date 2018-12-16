@@ -173,6 +173,26 @@ bool Journal::validatePassword(std::string password)
 *******************************************************************************/
 void Journal::rewind()
 {
+	if(this->entries.())
+	{
+		int size = entries.size();
+		int num = rand() % size;
+		int date = entries[num]->getDate();
+		clearTheScreen();
+		int day = date / 1000000;
+		int month = (date - (day * 1000000)) / 10000;
+		int year = date - (month * 10000);
+		cout << "On " << day << "/" << month << "/" << year << endl;
+		cout << this->entries[i]->getMadeHappy() << endl;
+		cout << "made you happy!" << endl;
+		pause();
+	}
+	else
+	{
+		cout << "It looks like you currently do not have any journal entries" << endl << endl;
+		cout << "Life is 10% what happens to you and 90% how you react to it - Lou Holtz" << endl;
+		pause();
+	}
 }
 
 /*******************************************************************************
@@ -448,4 +468,3 @@ int Journal::getAvgMood()
  * Function:
  * Description:
 *******************************************************************************/
-
