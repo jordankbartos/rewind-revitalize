@@ -80,7 +80,7 @@ int Entry::getWordCount()
 *******************************************************************************/
 void Entry::countWords()
 {
-	string counter = getTextBody();
+	std::string counter = getTextBody();
 	int len = counter.length();
 	int words = 1; // Otherwise wouldn't count the last word.
 	for(int i = 0; i < len; i++)
