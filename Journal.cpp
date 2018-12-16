@@ -268,9 +268,11 @@ void Journal::addEntry()
 	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
-	//Store it
+	newEntry->countWords();
+	cout << "Words: " << newEntry->getWordCount() << endl;
+	pause();
 	this->entries.push_back(newEntry);
-	
+
 	delete newEntry;
 }
 /*******************************************************************************
