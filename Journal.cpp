@@ -17,9 +17,9 @@
 *******************************************************************************/
 Journal::Journal()
 {
-	this->encryptedFile = NULL;
+	/*this->encryptedFile = NULL;
 	this->author = NULL;
-	this->password = NULL;
+	this->password = NULL; */
 	this->numEntries = 0;
 	this->avgWordCount = 0;
 	this->longestPost = 0;
