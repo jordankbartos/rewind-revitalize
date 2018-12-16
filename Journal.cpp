@@ -17,9 +17,9 @@
 *******************************************************************************/
 Journal::Journal()
 {
-	this->encryptedFile = NULL;
+	/*this->encryptedFile = NULL;
 	this->author = NULL;
-	this->password = NULL;
+	this->password = NULL; */
 	this->numEntries = 0;
 	this->avgWordCount = 0;
 	this->longestPost = 0;
@@ -36,6 +36,8 @@ Journal::Journal(std::string filename)
 {
 	//initialize EntrielsLog fstream object with the file name and open for
 	//reading
+
+	/*
 	this->EntriesLog.open(filename, std::fstream::in);
 
 	//if the entry log fails to open, construct the object as a default journal
@@ -101,31 +103,31 @@ Journal::Journal(std::string filename)
 		endFile = EntriesLog.peek();
 	}
 
-	this->EntriesLog.close();
+	this->EntriesLog.close();*/
 }
 
 /*******************************************************************************
  * Function: 			~Journal()
  * Description: destructor for a journal object
 *******************************************************************************/
-Journal::~Journal()
-{
-	delete this->author;
-	delete this->password;
-	for(unsigned int i = 0; i < this->entries.size(); ++i)
-	{
-		delete this->entries.at(i);
-	}
-}
+//Journal::~Journal()
+//{
+//	delete this->author;
+//	delete this->password;
+//	for(unsigned int i = 0; i < this->entries.size(); ++i)
+//	{
+//		delete this->entries.at(i);
+//	}
+//}
 
 /*******************************************************************************
  * Function:			getPassword()
  * Description: returns a pointer to the password member variable
 *******************************************************************************/
-std::string* Journal::getPassword()
-{
-	return this->password;
-}
+//std::string* Journal::getPassword()
+//{
+	//return this->password;
+//}
 
 /*******************************************************************************
  * Function:			void encryptAndSave()
@@ -136,7 +138,7 @@ std::string* Journal::getPassword()
 void Journal::encryptAndSave()
 {
 	//generate the encryption key from the password
-	int encryptionKey=1;
+/*	int encryptionKey=1;
 	for(unsigned int i = 0; i < this->password->length(); ++i)
 	{
 		encryptionKey += static_cast<int>(this->password->at(i));
@@ -161,7 +163,7 @@ void Journal::encryptAndSave()
 	}
 
 
-	outputFile.close();
+	outputFile.close();*/
 }
 
 /*******************************************************************************
@@ -258,6 +260,7 @@ void Journal::addEntry()
 		if(tempString != "QUIT")
 		{
 			body += tempString;
+			body += '\n';
 		}
 		else
 		{
@@ -268,9 +271,29 @@ void Journal::addEntry()
 	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
-	//Store it
+	newEntry->countWords();
+	cout << "Words: " << newEntry->getWordCount() << endl;
+	pause();
+
+	//Testing display the info
+	clearTheScreen();
+
+	cout << "Happy line: " << endl;
+	cout << newEntry->getMadeHappy();
+	pause();
+
+	clearTheScreen();
+
+	cout << "Mood: " << newEntry->getMood() << endl;
+	pause();
+
+	clearTheScreen();
+	cout << "Main: " << endl;
+	cout << endl << newEntry->getTextBody() << endl;
+
+	pause();
 	this->entries.push_back(newEntry);
-	
+
 	delete newEntry;
 }
 /*******************************************************************************
