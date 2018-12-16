@@ -303,8 +303,9 @@ void Journal::addEntry()
 	this->entries.push_back(newEntry);
 	pause();
 	delete newEntry;
-	std::string happy = this->entries.at(0)->getMadeHappy();
+	std::string happy = this->entries[0]->getMadeHappy();
 	cout << "happy: " << happy << endl;
+
 	pause();
 }
 
