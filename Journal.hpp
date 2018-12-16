@@ -48,7 +48,7 @@ class Journal
 		double getAvgWordCount();
 		int getLongestPost();
 		int getShortestPost();
-		int getAvgMood();
+		double getAvgMood();
 
 		//other functions
 		int createKey(std::string);

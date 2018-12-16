@@ -418,7 +418,7 @@ int Journal::getNumEntries()
 
 double Journal::getAvgWordCount()
 {
-	double words = static_cast<double>this->totalWord;
+	double words = static_cast<double>(this->totalWord);
 	double result = words / this->getNumEntries();
 	this->avgWordCount = result;
 	return this->avgWordCount;
@@ -436,7 +436,7 @@ int Journal::getShortestPost()
 
 double Journal::getAvgMood()
 {
-	double moods = static_cast<double>totalMood;
+	double moods = static_cast<double>(this->totalMood);
 	double result = moods / this->getNumEntries();
 	this->avgMood = result;
 	return this->avgMood;
