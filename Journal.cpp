@@ -6,8 +6,6 @@
 *******************************************************************************/
 
 #include "Journal.hpp"
-#include "helperFunctions.hpp"
-#include <stdio.h>
 
 
 /*******************************************************************************
@@ -20,7 +18,7 @@ Journal::Journal()
 	this->numEntries = 0;
 	this->avgWordCount = 0;
 	this->longestPost = 0;
-	this->shortestPost = 0;
+	this->shortestPost = INT_MAX;
 	this->avgMood = 0;
 	this->totalMood = 0;
 	this->totalWord = 0;
@@ -190,7 +188,6 @@ void Journal::encryptAndSave(std::string password)
 
 	//ofstream object for storing contents
 	std::ofstream outputFile;
-	std::cout << this->encryptedFile << std::endl;
 	outputFile.open(this->encryptedFile, std::ofstream::trunc);
 	if(!outputFile)
 	{
@@ -321,6 +318,9 @@ void Journal::decryptAndLoad(std::string password)
 	//to the vector of entries, and continue until the EOF is reached
 	while(ifs && ifs.peek() != EOF)
 	{
+		//increment total number of entries
+		this->numEntries++;
+
 		//read text body
 		std::getline(ifs, str, groupSeparatorChar);
 		std::string textBody = str;
@@ -332,6 +332,15 @@ void Journal::decryptAndLoad(std::string password)
 		//read word count
 		int wordCount = 0;
 		ifs >> wordCount;
+		this->totalWord += wordCount;
+		if(this->longestPost < wordCount)
+		{
+			this->longestPost = wordCount;
+		}
+		if(this->shortestPost > wordCount)
+		{
+			this->shortestPost = wordCount;
+		}
 
 		//read date
 		int date = 0; 
@@ -340,6 +349,7 @@ void Journal::decryptAndLoad(std::string password)
 		//read mood
 		int mood = 0;
 		ifs >> mood;	
+		this->totalMood += mood;
 
 		//ignore the newline that comes after mood
 		ifs.ignore(1, '\n');
@@ -461,7 +471,6 @@ void Journal::addEntry()
 	{
 		this->shortestPost = words;
 	}
-	pause();
 
 }
 

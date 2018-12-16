@@ -27,7 +27,9 @@ int main()
 	ofstream ofs;
 
 	// Display the main menu.
+	clearTheScreen();
 	displayIntro();
+	pause();
 
 	// Create the journal.
 	Journal* journal = new Journal();
@@ -36,6 +38,7 @@ int main()
 	do {
 
 		// Prompt for username.
+		clearTheScreen();
 		cout << "\nPlease enter your username: ";
 		getline(cin, username);
 
@@ -81,6 +84,7 @@ int main()
 			do {
 
 				// Have the user create a new password for their account.
+				clearTheScreen();
 				cout << "\nPlease enter a new password: ";
 				getline(cin, password);
 
@@ -134,6 +138,7 @@ int main()
 	do {
 
 		// Display main menu and get user choice.
+		clearTheScreen();
 		selection = validateMenuChoice(displayMainMenu());
 
 		switch (selection) {
@@ -152,7 +157,7 @@ int main()
 
 		// User selected option 3: show statistics.
 		case '3':
-
+			clearTheScreen();
 			cout << "\n\nLIFETIME STATISTICS\n"
 				<< "\nNumber of Entries: " << journal->getNumEntries()
 				<< "\nAverage Word Count: " << journal->getAvgWordCount()
@@ -160,6 +165,7 @@ int main()
 				<< "\nShortest Entry: " << journal->getShortestPost()
 				<< "\nAverage Mood: " << journal->getAvgMood()
 				<< "\n";
+			pause();
 			break;
 
 		// User selected option 4: exit.

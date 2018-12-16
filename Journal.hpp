@@ -12,7 +12,11 @@
 
 #include <fstream>
 #include <vector>
+#include <stdio.h>
+#include <limits.h>
 #include "Entry.hpp"
+#include "helperFunctions.hpp"
+
 
 class Journal
 {
@@ -37,7 +41,6 @@ class Journal
 		// Private methods.
 		//int createKey(std::string);
 
-	protected:
 	public:
 		//constructors and destructors
 		Journal();
