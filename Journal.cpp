@@ -237,7 +237,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
-	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
+	cout << "In one sentence, what is something that made you happy today? " << endl;
 	std::string tempString;
 	getline(cin, tempString);
 	//Store in happy
@@ -270,7 +270,7 @@ void Journal::addEntry()
 	//Count the words
 	//Store it
 	this->entries.push_back(newEntry);
-	pause();
+	
 	delete newEntry;
 }
 /*******************************************************************************
