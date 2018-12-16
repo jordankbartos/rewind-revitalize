@@ -45,7 +45,7 @@ bool Journal::userNameExists(std::string username)
 {
 	// Get the full filename
 	std::string filename = username + ".log";
-	
+
 	// Open the file.
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
@@ -61,7 +61,7 @@ bool Journal::userNameExists(std::string username)
 
 		// Delete the file and return false.
 		if (remove(filename.c_str()) != 0) {
-			
+
 			// ERROR HANDLING: couldn't delete file for some reason.
 			std::cout << "\nError deleting file.\n";
 		}
@@ -119,26 +119,29 @@ bool Journal::validatePassword(std::string username, std::string password)
 
 /*******************************************************************************
 * Function: void rewind()
-* Description: 
+* Description:
 *******************************************************************************/
 void Journal::rewind()
 {
-	if(this->entries.())
+	if(!(this->entries.empty()))
 	{
 		int size = entries.size();
 		int num = rand() % size;
-		int date = entries[num]->getDate();
+		Entry* temp = (entries.at(num));
+		int date = temp->getDate();
 		clearTheScreen();
-		int day = date / 1000000;
-		int month = (date - (day * 1000000)) / 10000;
-		int year = date - (month * 10000);
-		cout << "On " << day << "/" << month << "/" << year << endl;
-		cout << this->entries[i]->getMadeHappy() << endl;
+		int month = date / 1000000;
+		int day = (date - (month * 1000000)) / 10000;
+		int year = date - (month * 1000000) - (day * 10000);
+		cout << "On " << month << "/" << day << "/" << year << endl;
+		std::string happy = temp->getMadeHappy();
+		cout << happy << endl;
 		cout << "made you happy!" << endl;
 		pause();
 	}
 	else
 	{
+		clearTheScreen();
 		cout << "It looks like you currently do not have any journal entries" << endl << endl;
 		cout << "Life is 10% what happens to you and 90% how you react to it - Lou Holtz" << endl;
 		pause();
@@ -198,12 +201,12 @@ void Journal::encryptAndSave(std::string password)
  * Description: decrypts and loads all the journal entries in a journal log file
  * 	instantiating each journal entry as a new Entry object and adding each one
  * 	to the array of Entry* entries member variable. Uses the password as a
- * 	decryption key. This function will not be called 
+ * 	decryption key. This function will not be called
 *******************************************************************************/
 void Journal::decryptAndLoad(std::string password)
 {
 	int key = createKey(password);
-	
+
 	//attempt to decrypt the file
 	//make a txt file to store decrypted contents
 	std::ofstream decryptedFile("decryptedFile.txt");
@@ -216,7 +219,7 @@ void Journal::decryptAndLoad(std::string password)
 		ch ^= key;
 		decryptedFile.put(ch);
 	}
-	
+
 	/*
 	//attempt to read the password from the decrypted file
 	std::string tmp;
@@ -275,37 +278,35 @@ void Journal::addEntry()
 
 	//Date
 	//day
-	int date = (now->tm_mday) * 1000000;
+	int date = (now->tm_mon + 1) * 1000000;
 	//Month
-	date += ((now->tm_mon + 1) * 10000);
+	date += ((now->tm_mday) * 10000);
 	//year
 	date += (now->tm_year + 1900);
 	cout << "Date: " << date << endl;
 	newEntry->setDate(date);
-
 	//Mood
 
 	//Clear the clearTheScreen
 	clearTheScreen();
-	cout << "How would you rate your mood? (1 -5)" << endl;
+	cout << "How would you rate your mood? (1 - 5)" << endl;
 	int mood = validateIntRange(1, 5);
 	newEntry->setMood(mood);
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
-	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
-	std::string tempString;
-	getline(cin, tempString);
-	//Store in happy
-	newEntry->setMadeHappy(tempString);
+	cout << "In one sentence, what is something that made you happy today? " << endl;
+	std::string happy;
+	getline(cin, happy);
+	newEntry->setMadeHappy(happy);
+	pause();
 	clearTheScreen();
-
 	//Prompt the user for main entry
 	std::string prompt = getPrompt();
 	cout << prompt << endl << endl;
 	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
-	tempString = "";
+	std::string tempString = "";
 	std::string body = "";
 	bool quit = false;
 	while(!quit)
@@ -324,10 +325,12 @@ void Journal::addEntry()
 	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
+	int words = countWords(body);
+	newEntry->setWordCount(words);
 	//Store it
 	this->entries.push_back(newEntry);
 	pause();
-	delete newEntry;
+
 }
 
 // Getters and setters

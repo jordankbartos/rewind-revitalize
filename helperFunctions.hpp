@@ -18,11 +18,13 @@ void pause();
 char validateMenuChoice(char);
 char getYesNoAnswer();
 int validateIntRange(int, int);
+std::string getPrompt();
+int countWords(std::string);
+
 
 // TODO
 bool isValidUsername(std::string);
 bool isValidPassword(std::string);
-
 
 
 #endif

@@ -275,6 +275,29 @@ bool isValidUsername(std::string)
 	return false;
 }
 
+
+/*******************************************************************************
+ * Function:			int countWords()
+ * Description: counts the number of words in the body of the string and returns the int
+*******************************************************************************/
+int countWords(std::string s)
+{
+	int len = s.length();
+	int words = 0; // Otherwise wouldn't count the last word.
+	for(int i = 0; i < len; i++)
+	{
+		if(s[i] == ' ' && s[i + 1] != ' ')
+		{
+			words++;
+		}
+		if( s[i] == '\n')
+		{
+			words++;
+		}
+	}
+ 	return words;
+}
+
 bool isValidPassword(std::string)
 {
 	return false;

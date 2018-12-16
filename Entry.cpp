@@ -43,6 +43,7 @@ Entry::Entry(std::string tb, std::string mh, int wc, int d, int m)
 *******************************************************************************/
 Entry::~Entry()
 {
+	
 }
 
 /******************************************************************************
@@ -73,14 +74,7 @@ int Entry::getWordCount()
 	return this->wordCount;
 }
 
-/*******************************************************************************
- * Function:			void countWords()
- * Description: counts the number of words in the body of the entry and sets it
- * to the member variable wordCount
-*******************************************************************************/
-void Entry::countWords()
-{
-}
+
 
 /*******************************************************************************
  * Function:			void setDate(int)
@@ -107,6 +101,15 @@ int Entry::getDate()
 void Entry::setMood(int m)
 {
 	this->mood = m;
+}
+
+/*******************************************************************************
+ * Function:			void setWordCount(int)
+ * Description: sets the member variable wordCount
+*******************************************************************************/
+void Entry::setWordCount(int wc)
+{
+	this->wordCount = wc;
 }
 
 /*******************************************************************************
@@ -137,35 +140,7 @@ void Entry::setMadeHappy(std::string happy)
 	this->madeHappy = happy;
 }
 
-/*******************************************************************************
- * Function:			string getPrompt()
- * Description: returns a string for a randomly selected prompt. Prompts are
- * stored in a text file and the function randomly decides which line to use.
-*******************************************************************************/
-/*std::string getPrompt()
-{
-	//Initialize random number and open prompt file
-	int num = rand();
-	fstream input;
-	std::string prompt;
-	input.open("prompts.txt");
-	if(!input)
-	{
-		cout << "File open error" << endl;
-		return "No file found";
-	}
 
-	//Get random num in range
-	num = num % 40 + 1;
-	//Loop until the correct line is found
-	for(int i = 0; i < num; i++)
-	{
-		getline(input, prompt);
-	}
-	input.close();
-	return prompt;
-
-}*/
 
 /*******************************************************************************
  * Function:

@@ -46,8 +46,8 @@ class Entry
 		//getters and setters
 		void setTextBody(std::string);
 		std::string getTextBody();
+		void setWordCount(int);
 		int getWordCount();
-		void countWords();
 		void setDate(int);
 		int getDate();
 		void setMood(int);
