@@ -103,22 +103,22 @@ Journal::Journal(std::string filename)
 		endFile = EntriesLog.peek();
 	}
 
-	this->EntriesLog.close();
+	this->EntriesLog.close();*/
 }
-*/
+
 /*******************************************************************************
  * Function: 			~Journal()
  * Description: destructor for a journal object
 *******************************************************************************/
-Journal::~Journal()
-{
+//Journal::~Journal()
+//{
 //	delete this->author;
 //	delete this->password;
 //	for(unsigned int i = 0; i < this->entries.size(); ++i)
 //	{
 //		delete this->entries.at(i);
 //	}
-}
+//}
 
 /*******************************************************************************
  * Function:			getPassword()

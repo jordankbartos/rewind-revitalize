@@ -36,7 +36,7 @@ class Journal
 		//constructors and destructors
 		Journal();
 		Journal(std::string);
-		~Journal();
+	//	~Journal();
 
 		//getters and setters
 		// std::string getPassword();	REMOVE
