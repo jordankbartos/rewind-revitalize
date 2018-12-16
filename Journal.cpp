@@ -479,6 +479,7 @@ void Journal::addEntry()
 		this->setShortestPost(words);
 	}
 	//Set average words
+
 	double avgWords = static_cast<double>(this->getTotalWord());
 	double wordsResult = avgWords / this->getNumEntries();
 	this->setAvgWordCount(wordsResult);
@@ -487,6 +488,7 @@ void Journal::addEntry()
 	double moodsAvg = static_cast<double>(this->getTotalMood());
 	double moodResult = moodsAvg / this->getNumEntries();
 	this->setAvgMood(moodResult);
+
 
 }
 
