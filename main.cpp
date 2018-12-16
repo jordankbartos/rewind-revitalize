@@ -12,20 +12,11 @@
 
 int main()
 {
+	srand(time(0));
 	/* TESTING AREA */
 	/*journal->displayEntry(1234567890);
 	journal->encryptAndSave();*/
 
-	char selection;			// To hold user menu selections.
-	std::string username;
-	std::string password;
-	bool newUser = false;
-	bool validPassword = false;
-
-	// Display the main menu.
-	displayIntro();
-
-	// Create the journal.
 	Journal* journal = new Journal();
 
 	// This do-while loop handles the username.
@@ -35,17 +26,17 @@ int main()
 		std::cout << "\nPlease enter your username: ";
 		getline(std::cin, username);
 
-		/* Check if the username exists by determining is there is 
+		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */
 		if (!journal->userNameExists(username)) {
 
 			selection = ' ';
 
-			/* If not found, prompt to make a new account. 
+			/* If not found, prompt to make a new account.
 			 * If user answer no, loop again to prompt for username. */
 			std::cout << "\nUsername not found. "
 				<< "Do you want to make a new account (Y/N)? ";
-			
+
 			// answer will be 'y' or 'n'
 			selection = getYesNoAnswer();
 
@@ -57,18 +48,18 @@ int main()
 				journal->openUserFile(username);
 			}
 		}
-		else { 
-			
+		else {
+
 			/* If found, openUserFile should handle opening an existing
 			 * log file using the given username */
-			journal->openUserFile(username); 
+			journal->openUserFile(username);
 		}
 
 	} while (selection != 'n');
 
 	// This do-while loop handles the user password.
 	do {
-		
+
 		// Check if the user is a new user.
 		if (newUser) {
 
@@ -104,7 +95,7 @@ int main()
 
 			/* Check if the password is valid. This should get the
 			 * decrypted password from the log file, attempt to decrypt
-			 * with the given password, and then validate that they are 
+			 * with the given password, and then validate that they are
 			 * the same. */
 			if (journal->validatePassword(password)) {
 
@@ -131,7 +122,7 @@ int main()
 
 		// User selected option 1: enter a new journal.
 		case '1':
-			
+
 			journal->addEntry();
 			break;
 
@@ -143,7 +134,7 @@ int main()
 
 		// User selected option 3: show statistics.
 		case '3':
-			
+
 			// TODO: ANY OTHER STATS TO SHOW??
 			std::cout << "\n\nLIFETIME STATISTICS\n"
 				<< "\nNumber of Entries: " << journal->getNumEntries()
@@ -154,7 +145,7 @@ int main()
 				<< "\n";
 			break;
 
-		// User selected option 4: exit. 
+		// User selected option 4: exit.
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */

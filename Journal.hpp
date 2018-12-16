@@ -26,7 +26,8 @@ class Journal
 		int shortestPost;
 		int avgMood;
 
-		std::fstream EntriesLog; 		//a pointer to an fstream object for 
+
+		std::fstream EntriesLog; 		//a pointer to an fstream object for
 
 		// Private methods.
 		int createKey(std::string);
@@ -37,6 +38,7 @@ class Journal
 		Journal();
 		//Journal(std::string);
 		~Journal();
+		Journal(std::string);
 
 		//getters and setters
 		int getNumEntries();
@@ -50,11 +52,12 @@ class Journal
 	    std::ofstream& openUserFile(std::string);
 		bool validatePassword(std::string);
 		void rewind();			// gets a random happy memory.
-		void encryptAndSave(std::string);	// Encrypts the user data to 
+		void encryptAndSave(std::string);	// Encrypts the user data to
 		void decryptAndLoad(std::string);
 		void displayEntry(int);
 		void addEntry();
-		
+		std::string getPrompt();
+
 };
 
 
