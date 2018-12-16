@@ -242,7 +242,7 @@ void Journal::addEntry()
 	//https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
 	std::time_t t = time(0);
 	std::tm* now = std::localtime(&t);
-	Entry* newEntry = new Entry();
+
 
 	//Date
 	//day
@@ -252,7 +252,6 @@ void Journal::addEntry()
 	//year
 	date += (now->tm_year + 1900);
 	cout << "Date: " << date << endl;
-	newEntry->setDate(date);
 
 	//Mood
 
@@ -260,19 +259,12 @@ void Journal::addEntry()
 	clearTheScreen();
 	cout << "How would you rate your mood? (1 - 5)" << endl;
 	int mood = validateIntRange(1, 5);
-	newEntry->setMood(mood);
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
 	cout << "In one sentence, what is something that made you happy today? " << endl;
-	std::string tempString;
-	getline(cin, tempString);
-	//Store in happy
-	newEntry->setMadeHappy(tempString);
-	clearTheScreen();
-
-
-	cout << "testing: made happy: " <<  newEntry->getMadeHappy() << endl;
+	std::string happy;
+	getline(cin, happy);
 	pause();
 	clearTheScreen();
 	//Prompt the user for main entry
@@ -280,7 +272,7 @@ void Journal::addEntry()
 	cout << prompt << endl << endl;
 	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
-	tempString = "";
+	std::string tempString = "";
 	std::string body = "";
 	bool quit = false;
 	while(!quit)
@@ -296,11 +288,11 @@ void Journal::addEntry()
 		}
 
 	}
-	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
+	int words = countWords(body);
 	//Store it
-	this->entries.push_back(newEntry);
+	this->entries.push_back(Entry(body, happy, words, date, mood));
 	pause();
 	delete newEntry;
 

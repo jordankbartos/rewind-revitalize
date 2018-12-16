@@ -47,7 +47,6 @@ class Entry
 		void setTextBody(std::string);
 		std::string getTextBody();
 		int getWordCount();
-		void countWords();
 		void setDate(int);
 		int getDate();
 		void setMood(int);

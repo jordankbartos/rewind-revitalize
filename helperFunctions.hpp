@@ -13,6 +13,7 @@ char validateMenuChoice(char);
 char getYesNoAnswer();
 int validateIntRange(int, int);
 std::string getPrompt();
+int countWords(std::string);
 
 
 #endif
