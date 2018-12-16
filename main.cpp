@@ -30,6 +30,9 @@ int main()
 
 	// Create the journal.
 	Journal* journal = new Journal();
+	journal->rewind();
+	journal->addEntry();
+	journal->rewind();
 
 	// This do-while loop handles the username.
 	do {
@@ -38,17 +41,17 @@ int main()
 		cout << "\nPlease enter your username: ";
 		getline(cin, username);
 
-		/* Check if the username exists by determining is there is 
+		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */
 		if (!journal->userNameExists(username)) {
 
 			selection = ' ';
 
-			/* If not found, prompt to make a new account. 
+			/* If not found, prompt to make a new account.
 			 * If user answer no, loop again to prompt for username. */
 			std::cout << "\nUsername not found. "
 				<< "Do you want to make a new account (Y/N)? ";
-			
+
 			// answer will be 'y' or 'n'
 			selection = getYesNoAnswer();
 
@@ -71,7 +74,7 @@ int main()
 
 	// This do-while loop handles the user password.
 	do {
-		
+
 		// Check if the user is a new user.
 		if (newUser) {
 
@@ -111,7 +114,7 @@ int main()
 
 			/* Check if the password is valid. This should get the
 			 * decrypted password from the log file, attempt to decrypt
-			 * with the given password, and then validate that they are 
+			 * with the given password, and then validate that they are
 			 * the same. */
 			if (journal->validatePassword(password)) {
 
@@ -138,7 +141,7 @@ int main()
 
 		// User selected option 1: enter a new journal.
 		case '1':
-			
+
 			journal->addEntry();
 			break;
 
@@ -150,7 +153,7 @@ int main()
 
 		// User selected option 3: show statistics.
 		case '3':
-			
+
 			cout << "\n\nLIFETIME STATISTICS\n"
 				<< "\nNumber of Entries: " << journal->getNumEntries()
 				<< "\nAverage Word Count: " << journal->getAvgWordCount()
@@ -160,7 +163,7 @@ int main()
 				<< "\n";
 			break;
 
-		// User selected option 4: exit. 
+		// User selected option 4: exit.
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
