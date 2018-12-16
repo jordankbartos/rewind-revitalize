@@ -10,24 +10,26 @@
 #ifndef JOURNAL_HPP
 #define JOURNAL_HPP
 
+#include <fstream>
+#include <vector>
 #include "Entry.hpp"
 #include "helperFunctions.hpp"
-#include <vector>
-
 
 class Journal
 {
 	private:
-		std::string* encryptedFile;
-		std::string* author;
+		std::string encryptedFile;
+		//std::string* author;				// author stored in log file only now.
 		std::vector<Entry*> entries;	 	//a pointer to an array of entries
-		std::string* password;
+		//std::string* password;			// password stored in log file only now.
+
 		int numEntries;
 		double avgWordCount;
 		int longestPost;
 		int shortestPost;
 		// int avgMood; ??
-		std::fstream EntriesLog; 		//a pointer to an fstream object for
+
+		std::fstream EntriesLog; 		//a pointer to an fstream object for 
 									//saving/loading a log file
 	protected:
 	public:
@@ -37,7 +39,7 @@ class Journal
 		~Journal();
 
 		//getters and setters
-		std::string* getPassword();
+		// std::string getPassword();	REMOVE
 		int getNumEntries();
 		double getAvgWordCount();
 		int getLongestPost();
@@ -45,8 +47,11 @@ class Journal
 		// int getAvgMood(); ??
 
 		//other functions
+		bool userNameExists(std::string);
+	    void openUserFile(std::string);
+		bool validatePassword(std::string);
 		void rewind();			// gets a random happy memory.
-		void encryptAndSave();	// Encrypts the user data to
+		void encryptAndSave();	// Encrypts the user data to 
 		void decryptAndLoad();
 		void displayEntry(int);
 		void addEntry();
