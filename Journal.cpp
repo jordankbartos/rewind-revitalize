@@ -88,7 +88,8 @@ bool Journal::userNameExists(std::string username)
 bool Journal::validatePassword(std::string username, std::string password)
 {
 	std::string input;		// To hold an input from the file.
-	std::string decrypted;	// To hold the decrypted password.
+	//create cstring of length to hold password plus null terminator
+	char ch[100] = {0};
 
 	int key = createKey(password);
 
@@ -97,6 +98,7 @@ bool Journal::validatePassword(std::string username, std::string password)
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
 
+
 	if (!ifs) {
 
 		// ERROR HANDLING
@@ -104,21 +106,21 @@ bool Journal::validatePassword(std::string username, std::string password)
 		return false;
 	}
 	else {
-		// Get the second line from the file.
-		getline(ifs, input);
-		getline(ifs, input);
+		// Get the first number of characters from the file that are equal to
+		// the length of the provided password.
+		ifs.get(ch,password.length()+1);
+		input = ch;
+
 
 		// Attempt to decrypt the line with the encryption key.
-		char ch;
-		for (unsigned int i = 0; i < input.length(); i++)
-		{
-			ch = input[i] ^ key;
-			decrypted += ch;
-		}
+		encryptString(input,key);
+
+		std::cout << "\n\n\n" << input << "\n\n\n" << std::endl;
+
 		ifs.close();
 
 		// Validate if the passwords match.
-		if (decrypted == password) {
+		if (input == password) {
 
 			return true;
 		}
@@ -204,6 +206,10 @@ void Journal::encryptAndSave(std::string password)
 		outputFile.put(ch);
 	}
 	
+	//insert a "group seperator character" into the file
+	ch = static_cast<char>(29) ^ key;
+	outputFile.put(ch);
+	
 	//encrypt and save the contents of each entry
 	std::string toEncrypt;
 	int intToEncrypt;
@@ -251,10 +257,7 @@ void Journal::encryptAndSave(std::string password)
 
 		//insert an encrypted newline char
 		outputFile.put(ch);
-		
-		
 	}
-
 
 	outputFile.close();
 }
@@ -269,33 +272,7 @@ void Journal::encryptAndSave(std::string password)
 void Journal::decryptAndLoad(std::string password)
 {
 	int key = createKey(password);
-
-	//attempt to decrypt the file
-	//make a txt file to store decrypted contents
-	std::ofstream decryptedFile("decryptedFile.txt");
-	//decrypt and store each character
-	char ch;
-	this->EntriesLog.seekg(0);
-	this->EntriesLog.clear();
-	while(this->EntriesLog >> ch)
-	{
-		ch ^= key;
-		decryptedFile.put(ch);
-	}
-	pause();
-
-	/*
-	//attempt to read the password from the decrypted file
-	std::string tmp;
-	getline(decryptedFile,tmp,'\n');
-	//compare the password to the user-entered password
-	if(tmp.compare(password == 0)
-	{
-		//if they are the same, populate the journal with entries and return
-		return true;
-	}
-	//if any of this fails, return error and get new password
-	return false;*/
+	
 }
 
 /*******************************************************************************
