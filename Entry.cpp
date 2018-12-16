@@ -43,6 +43,7 @@ Entry::Entry(std::string tb, std::string mh, int wc, int d, int m)
 *******************************************************************************/
 Entry::~Entry()
 {
+	delete this;
 }
 
 /******************************************************************************
@@ -100,6 +101,15 @@ int Entry::getDate()
 void Entry::setMood(int m)
 {
 	this->mood = m;
+}
+
+/*******************************************************************************
+ * Function:			void setWordCount(int)
+ * Description: sets the member variable wordCount
+*******************************************************************************/
+void Entry::setWordCount(int wc)
+{
+	this->wordCount = wc;
 }
 
 /*******************************************************************************

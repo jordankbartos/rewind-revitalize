@@ -242,7 +242,7 @@ void Journal::addEntry()
 	//https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
 	std::time_t t = time(0);
 	std::tm* now = std::localtime(&t);
-
+	Entry* newEntry = new Entry();
 
 	//Date
 	//day
@@ -252,19 +252,21 @@ void Journal::addEntry()
 	//year
 	date += (now->tm_year + 1900);
 	cout << "Date: " << date << endl;
-
+	newEntry->setDate(date);
 	//Mood
 
 	//Clear the clearTheScreen
 	clearTheScreen();
 	cout << "How would you rate your mood? (1 - 5)" << endl;
 	int mood = validateIntRange(1, 5);
+	newEntry->setMood(mood);
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
 	cout << "In one sentence, what is something that made you happy today? " << endl;
 	std::string happy;
 	getline(cin, happy);
+	newEntry->setMadeHappy(happy);
 	pause();
 	clearTheScreen();
 	//Prompt the user for main entry
@@ -288,13 +290,12 @@ void Journal::addEntry()
 		}
 
 	}
+	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
 	int words = countWords(body);
+	newEntry->setWordCount(words);
 	//Store it
-	Entry e1 = Entry(body, happy, words, date, mood);
-	Entry* newEntry;
-	newEntry = &e1;
 	this->entries.push_back(newEntry);
 	pause();
 
