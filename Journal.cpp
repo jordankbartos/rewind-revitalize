@@ -22,6 +22,8 @@ Journal::Journal()
 	this->longestPost = 0;
 	this->shortestPost = 0;
 	this->avgMood = 0;
+	this->totalMood = 0;
+	this->totalWord = 0;
 }
 
 /*******************************************************************************
@@ -43,7 +45,7 @@ Journal::~Journal()
 *******************************************************************************/
 bool Journal::userNameExists(std::string username)
 {
-	
+
 	this->encryptedFile = username + ".log";
 	// Get the full filename
 	std::string filename = username + ".log";
@@ -203,7 +205,7 @@ void Journal::encryptAndSave(std::string password)
 		ch = static_cast<int>(password.at(i)) ^ key;
 		outputFile.put(ch);
 	}
-	
+
 	//encrypt and save the contents of each entry
 	std::string toEncrypt;
 	int intToEncrypt;
@@ -251,8 +253,8 @@ void Journal::encryptAndSave(std::string password)
 
 		//insert an encrypted newline char
 		outputFile.put(ch);
-		
-		
+
+
 	}
 
 
@@ -393,6 +395,17 @@ void Journal::addEntry()
 	newEntry->setWordCount(words);
 	//Store it
 	this->entries.push_back(newEntry);
+	numEntries++;
+	totalMood += mood;
+	totalWord += words;
+	if(words > this->longestPost)
+	{
+		this->longestPost = words;
+	}
+	if(words < this->shortestPost)
+	{
+		this->shortestPost = words;
+	}
 	pause();
 
 }
@@ -405,6 +418,9 @@ int Journal::getNumEntries()
 
 double Journal::getAvgWordCount()
 {
+	double words = static_cast<double>this->totalWord;
+	double result = words / this->getNumEntries();
+	this->avgWordCount = result;
 	return this->avgWordCount;
 }
 
@@ -418,8 +434,11 @@ int Journal::getShortestPost()
 	return this->shortestPost;
 }
 
-int Journal::getAvgMood()
+double Journal::getAvgMood()
 {
+	double moods = static_cast<double>totalMood;
+	double result = moods / this->getNumEntries();
+	this->avgMood = result;
 	return this->avgMood;
 }
 
