@@ -506,15 +506,7 @@ int Journal::getShortestPost()
 
 double Journal::getAvgMood()
 {
-	if(this->getNumEntries() == 0)
-	{
-		this->avgMood = 0;
-		return this->avgMood;
-	}
-	else
-	{
-		return this->avgMood;
-	}
+	return this->avgMood;
 }
 
 /*******************************************************************************
