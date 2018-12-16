@@ -17,9 +17,8 @@
 *******************************************************************************/
 Journal::Journal()
 {
-	this->encryptedFile = NULL;
-	this->author = NULL;
-	this->password = NULL;
+	this->encryptedFile = "";
+	this->author = "";
 	this->numEntries = 0;
 	this->avgWordCount = 0;
 	this->longestPost = 0;
@@ -169,10 +168,42 @@ void Journal::encryptAndSave()
  * Description: decrypts and loads all the journal entries in a journal log file
  * 	instantiating each journal entry as a new Entry object and adding each one
  * 	to the array of Entry* entries member variable. Uses the password as a
- * 	decryption key
+ * 	decryption key. Returns true if the read was successful and false if the
+ * 	read was unsuccessful
 *******************************************************************************/
-void Journal::decryptAndLoad()
+bool Journal::decryptAndLoad(std::string* userEnteredPassword)
 {
+	int encryptionKey = 1;
+	//generate and encryption key from the user-entered password
+	for(unsigned int i = 0; i < userEnteredPassword->length(); ++i)
+	{
+		encryptionKey += static_cast<int>(userEnteredPassworf->at(i));
+	}
+	
+	//attempt to decrypt the file
+	//make a txt file to store decrypted contents
+	ofstream decryptedFile("decryptedFile.txt");
+	//decrypt and store each character
+	char ch;
+	this->EntriesLog.seekg(0);
+	this->EntriesLog.clear();
+	while(this->EntriesLog >> ch)
+	{
+		ch ^= encryptionKey;
+		decryptedFile.put(ch);
+	}
+	
+	//attempt to read the password from the decrypted file
+	std::string tmp;
+	std::getline(decryptedFile,tmp,'\n');
+	//compare the password to the user-entered password
+	if(tmp.compare(userEnteredPassword == 0)
+	{
+		//if they are the same, populate the journal with entries and return
+		return true;
+	}
+	//if any of this fails, return error and get new password
+	return false;
 }
 
 /*******************************************************************************

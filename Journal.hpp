@@ -19,10 +19,7 @@ class Journal
 {
 	private:
 		std::string encryptedFile;
-		//std::string* author;				// author stored in log file only now.
 		std::vector<Entry*> entries;	 	//a pointer to an array of entries
-		//std::string* password;			// password stored in log file only now.
-
 		int numEntries;
 		double avgWordCount;
 		int longestPost;
@@ -44,6 +41,7 @@ class Journal
 		double getAvgWordCount();
 		int getLongestPost();
 		int getShortestPost();
+		void getAuthor;
 		// int getAvgMood(); ??
 
 		//other functions
