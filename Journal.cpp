@@ -316,6 +316,13 @@ void Journal::decryptAndLoad(std::string password)
 	
 	//read the contents of an entry, generate a new entry object, append it
 	//to the vector of entries, and continue until the EOF is reached
+	if(!(ifs && ifs.peek() != EOF))
+	{
+		this->totalWord = 0;
+		this->longestPost = 0;
+		this->shortestPost = 0;
+		this->totalMood = 0;
+	}
 	while(ifs && ifs.peek() != EOF)
 	{
 		//increment total number of entries

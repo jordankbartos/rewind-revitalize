@@ -286,7 +286,7 @@ int countWords(std::string s)
 	int words = 0; // Otherwise wouldn't count the last word.
 	for(int i = 0; i < len; i++)
 	{
-		if(s[i] == ' ' && s[i + 1] != ' ')
+		if(s.at(i) == ' ' && s.at(i + 1) != ' ')
 		{
 			words++;
 		}
