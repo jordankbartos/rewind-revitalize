@@ -114,10 +114,10 @@ Journal::~Journal()
 {
 //	delete this->author;
 //	delete this->password;
-	for(unsigned int i = 0; i < this->entries.size(); ++i)
-	{
-		delete this->entries.at(i);
-	}
+//	for(unsigned int i = 0; i < this->entries.size(); ++i)
+//	{
+//		delete this->entries.at(i);
+//	}
 }
 
 /*******************************************************************************
