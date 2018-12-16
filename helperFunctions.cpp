@@ -283,7 +283,7 @@ bool isValidUsername(std::string)
 int countWords(std::string s)
 {
 	int len = s.length();
-	int words = 0; // Otherwise wouldn't count the last word.
+	int words = 1; // Otherwise wouldn't count the last word.
 	for(int i = 0; i < len; i++)
 	{
 		if(i < len - 2)
