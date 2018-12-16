@@ -190,6 +190,7 @@ int main()
 	journal->encryptAndSave(password);
 	delete journal;
 */
+	delete journal;
 	pause();
 	return 0;
 }
