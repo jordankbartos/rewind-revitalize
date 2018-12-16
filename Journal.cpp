@@ -245,7 +245,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for main entry
-	std::string = getPrompt();
+	std::string prompt = getPrompt();
 	cout << prompt << endl << endl;
 	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
