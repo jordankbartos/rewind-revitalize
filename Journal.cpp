@@ -99,14 +99,16 @@ void Journal::rewind()
 		clearTheScreen();
 		int day = date / 1000000;
 		int month = (date - (day * 1000000)) / 10000;
-		int year = date - (month * 10000);
+		int year = month - (month * 10000);
 		cout << "On " << day << "/" << month << "/" << year << endl;
-		cout << this->entries[num]->getMadeHappy() << endl;
+		std::string happy = this->entries.at(num)->getMadeHappy();
+		cout << happy << endl;
 		cout << "made you happy!" << endl;
 		pause();
 	}
 	else
 	{
+		clearTheScreen();
 		cout << "It looks like you currently do not have any journal entries" << endl << endl;
 		cout << "Life is 10% what happens to you and 90% how you react to it - Lou Holtz" << endl;
 		pause();
@@ -255,13 +257,13 @@ void Journal::addEntry()
 
 	//Clear the clearTheScreen
 	clearTheScreen();
-	cout << "How would you rate your mood? (1 -5)" << endl;
+	cout << "How would you rate your mood? (1 - 5)" << endl;
 	int mood = validateIntRange(1, 5);
 	newEntry->setMood(mood);
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
-	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
+	cout << "In one sentence, what is something that made you happy today? " << endl;
 	std::string tempString;
 	getline(cin, tempString);
 	//Store in happy
