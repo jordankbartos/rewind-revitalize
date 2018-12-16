@@ -95,13 +95,14 @@ void Journal::rewind()
 	{
 		int size = entries.size();
 		int num = rand() % size;
-		int date = entries[num]->getDate();
+		Entry* temp = entries.at(num);
+		int date = temp->getDate();
 		clearTheScreen();
-		int day = date / 1000000;
-		int month = (date - (day * 1000000)) / 10000;
-		int year = month - (month * 10000);
-		cout << "On " << day << "/" << month << "/" << year << endl;
-		std::string happy = this->entries.at(num)->getMadeHappy();
+		int month = date / 1000000;
+		int day = (date - (month * 1000000)) / 10000;
+		int year = date - (month * 1000000) - (day * 10000);
+		cout << "On " << month << "/" << date << "/" << year << endl;
+		std::string happy = temp->getMadeHappy();
 		cout << happy << endl;
 		cout << "made you happy!" << endl;
 		pause();
@@ -245,9 +246,9 @@ void Journal::addEntry()
 
 	//Date
 	//day
-	int date = (now->tm_mday) * 1000000;
+	int date = (now->tm_mon + 1) * 1000000;
 	//Month
-	date += ((now->tm_mon + 1) * 10000);
+	date += ((now->tm_mday) * 10000);
 	//year
 	date += (now->tm_year + 1900);
 	cout << "Date: " << date << endl;
