@@ -76,13 +76,45 @@ bool Journal::userNameExists(std::string username)
 * using the password as a key. If successful, also compares the decrypted
 * password with the user entered password to determine validity.
 *******************************************************************************/
-bool Journal::validatePassword(std::string password)
+bool Journal::validatePassword(std::string username, std::string password)
 {
+	std::string input;		// To hold an input from the file.
+	std::string decrypted;	// To hold the decrypted password.
+
 	int key = createKey(password);
-	// Get the second line of the input file.
 
+	// Open the input file.
+	std::string filename = username + ".log";
+	std::ifstream ifs;
+	ifs.open(filename.c_str());
 
-	return false;
+	if (!ifs) {
+
+		// ERROR HANDLING
+		cout << "\nError: Could not open file for " << username << "\n";
+		return false;
+	}
+	else {
+		// Get the second line from the file.
+		getline(ifs, input);
+		getline(ifs, input);
+
+		// Attempt to decrypt the line with the encryption key.
+		char ch;
+		for (int i = 0; i < input.length(); i++)
+		{
+			ch = input[i] ^ key;
+			decrypted += ch;
+		}
+		ifs.close();
+
+		// Validate if the passwords match.
+		if (decrypted == password) {
+
+			return true;
+		}
+		return false;
+	}
 }
 
 /*******************************************************************************
