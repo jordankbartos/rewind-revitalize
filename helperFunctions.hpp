@@ -14,6 +14,7 @@ std::string getPrompt();
 void clearTheScreen();
 void pause();
 void encryptString(std::string&, int);
+void printFileContents(std::string);
 
 // Validation functions.
 char validateMenuChoice(char);
