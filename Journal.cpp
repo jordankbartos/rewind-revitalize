@@ -116,9 +116,6 @@ bool Journal::validatePassword(std::string username, std::string password)
 
 		// Attempt to decrypt the line with the encryption key.
 		encryptString(input,key);
-
-		std::cout << "\n\n\n" << input << "\n\n\n" << std::endl;
-
 		ifs.close();
 
 		// Validate if the passwords match.
@@ -237,8 +234,9 @@ void Journal::encryptAndSave(std::string password)
 
 		//get and encrypt and insert the wordcount
 		intToEncrypt = this->entries.at(i)->getWordCount();
-		intToEncrypt ^= key;
-		outputFile << intToEncrypt;
+		toEncrypt = std::to_string(intToEncrypt);
+		encryptString(toEncrypt,key);
+		outputFile << toEncrypt;
 
 		//insert an encrypted newline char
 		ch = '\n' ^ key;
@@ -246,16 +244,18 @@ void Journal::encryptAndSave(std::string password)
 
 		//get and encrypt and insert the date
 		intToEncrypt = this->entries.at(i)->getDate();
-		intToEncrypt ^= key;
-		outputFile << intToEncrypt;
+		toEncrypt = std::to_string(intToEncrypt);
+		encryptString(toEncrypt,key);
+		outputFile << toEncrypt;
 
 		//insert an encrypted newline char
 		outputFile.put(ch);
 
 		//get and encrypt and insert the mood
 		intToEncrypt = this->entries.at(i)->getMood();
-		intToEncrypt ^= key;
-		outputFile << intToEncrypt;
+		toEncrypt = std::to_string(intToEncrypt);
+		encryptString(toEncrypt,key);
+		outputFile << toEncrypt;
 
 		//insert an encrypted newline char
 		outputFile.put(ch);
@@ -274,6 +274,84 @@ void Journal::encryptAndSave(std::string password)
 void Journal::decryptAndLoad(std::string password)
 {
 	int key = createKey(password);
+	char ch;
+	char groupSeparatorChar = static_cast<char>(29);
+	std::string str;
+	
+	//open a file and decrypt EntriesLog into it
+	std::ofstream ofs;
+
+	//open a temporary file to store the unencrypted log file
+	ofs.open("tempUnEncryp.log");
+	if(!ofs)
+	{
+		std::cout << "Error #1 opening temporary log file." << std::endl;
+		return;
+	}
+
+	//open the EntriesLog file
+	this->EntriesLog.open(encryptedFile);
+	if(!this->EntriesLog)
+	{
+		std::cout << "Error opening encrypted log file." << std::endl;
+	}
+
+	//decrypt the EntriesLog file and insert contents into the temp file
+	while(this->EntriesLog >> ch)
+	{
+		ch ^= key;
+		ofs << ch;
+	}
+		
+	this->EntriesLog.close();
+	ofs.close();
+
+	//re-open temp log file for reading
+	std::ifstream ifs;
+	ifs.open("tempUnEncryp.log");
+	if(!ifs)
+	{
+		std::cout << "Error #2 opening temporary log file." << std::endl;
+	}
+
+	//ignore the password entry
+	std::getline(ifs, str, groupSeparatorChar);
+	
+	//read the contents of an entry, generate a new entry object, append it
+	//to the vector of entries, and continue until the EOF is reached
+	while(ifs && ifs.peek() != EOF)
+	{
+		//read text body
+		std::getline(ifs, str, groupSeparatorChar);
+		std::string textBody = str;
+
+		//read made happy
+		std::getline(ifs, str, groupSeparatorChar);
+		std::string madeHappy = str;
+
+		//read word count
+		int wordCount = 0;
+		ifs >> wordCount;
+
+		//read date
+		int date = 0; 
+		ifs >> date;
+
+		//read mood
+		int mood = 0;
+		ifs >> mood;	
+
+		//ignore the newline that comes after mood
+		ifs.ignore(1, '\n');
+
+		//generate new Entry and add to vector of entries
+		this->entries.push_back(new Entry(textBody,madeHappy,wordCount,date,mood));
+	}
+	
+	//close both files
+	ifs.close();
+	remove("tempUnEncryp.log");
+	
 	
 }
 
