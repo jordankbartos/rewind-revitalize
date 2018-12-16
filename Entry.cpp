@@ -125,6 +125,7 @@ int Entry::getMood()
 *******************************************************************************/
 std::string Entry::getMadeHappy()
 {
+	cout << madeHappy() << endl;
 	return this->madeHappy;
 }
 
