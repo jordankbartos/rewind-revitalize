@@ -36,6 +36,8 @@ Journal::Journal(std::string filename)
 {
 	//initialize EntrielsLog fstream object with the file name and open for
 	//reading
+
+	/*
 	this->EntriesLog.open(filename, std::fstream::in);
 
 	//if the entry log fails to open, construct the object as a default journal
@@ -103,15 +105,15 @@ Journal::Journal(std::string filename)
 
 	this->EntriesLog.close();
 }
-
+*/
 /*******************************************************************************
  * Function: 			~Journal()
  * Description: destructor for a journal object
 *******************************************************************************/
 Journal::~Journal()
 {
-	delete this->author;
-	delete this->password;
+//	delete this->author;
+//	delete this->password;
 	for(unsigned int i = 0; i < this->entries.size(); ++i)
 	{
 		delete this->entries.at(i);
@@ -136,7 +138,7 @@ std::string* Journal::getPassword()
 void Journal::encryptAndSave()
 {
 	//generate the encryption key from the password
-	int encryptionKey=1;
+/*	int encryptionKey=1;
 	for(unsigned int i = 0; i < this->password->length(); ++i)
 	{
 		encryptionKey += static_cast<int>(this->password->at(i));
@@ -161,7 +163,7 @@ void Journal::encryptAndSave()
 	}
 
 
-	outputFile.close();
+	outputFile.close();*/
 }
 
 /*******************************************************************************
