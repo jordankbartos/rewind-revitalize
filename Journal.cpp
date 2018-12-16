@@ -91,7 +91,7 @@ bool Journal::validatePassword(std::string password)
 *******************************************************************************/
 void Journal::rewind()
 {
-	if(this->entries.empty())
+	if(!(this->entries.empty()))
 	{
 		int size = entries.size();
 		int num = rand() % size;
