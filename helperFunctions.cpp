@@ -302,3 +302,18 @@ bool isValidPassword(std::string)
 {
 	return false;
 }
+
+
+/*************************************************************************************
+ * Function			void encryptString(string to encrypt, int key)
+ * Description: takes a string by reference and applies an encryption key to the string
+ * by XORing each character of the string by the key. It can also be used to apply
+ * the reversing the encryption
+**************************************************************************************/
+void encryptString(std::string& toEncrypt, int key)
+{
+	for(unsigned int i = 0; i < toEncrypt.length(); ++i)
+	{
+		toEncrypt.at(i) ^= key;
+	}
+}

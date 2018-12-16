@@ -41,6 +41,7 @@ int main()
 
 		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */
+		selection = 'y';
 		if (!journal->userNameExists(username)) {
 
 			selection = ' ';

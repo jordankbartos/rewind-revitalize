@@ -43,6 +43,8 @@ Journal::~Journal()
 *******************************************************************************/
 bool Journal::userNameExists(std::string username)
 {
+	
+	this->encryptedFile = username + ".log";
 	// Get the full filename
 	std::string filename = username + ".log";
 
@@ -74,7 +76,6 @@ bool Journal::userNameExists(std::string username)
 		}
 		return false;
 	}
-	this->encryptedFile = username + ".log";
 	return true;
 }
 
@@ -188,6 +189,7 @@ void Journal::encryptAndSave(std::string password)
 
 	//ofstream object for storing contents
 	std::ofstream outputFile;
+	std::cout << this->encryptedFile << std::endl;
 	outputFile.open(this->encryptedFile, std::ofstream::trunc);
 	if(!outputFile)
 	{
@@ -203,6 +205,55 @@ void Journal::encryptAndSave(std::string password)
 	}
 	
 	//encrypt and save the contents of each entry
+	std::string toEncrypt;
+	int intToEncrypt;
+	for (unsigned int i = 0; i < this->entries.size(); ++i)
+	{
+		//get and encrypt the text body
+		toEncrypt = this->entries.at(i)->getTextBody();
+		encryptString(toEncrypt,key);
+		//put it into the file
+		outputFile << toEncrypt;
+
+		//put an encrypted "group seperator character" into the file
+		ch = 29 ^ key;
+		outputFile.put(ch);
+
+		//get and encrypt and insert the madeHappy
+		toEncrypt = this->entries.at(i)->getMadeHappy();
+		encryptString(toEncrypt,key);
+		outputFile << toEncrypt;
+
+		//insert the encrypted "group seperator character" again
+		outputFile.put(ch);
+
+		//get and encrypt and insert the wordcount
+		intToEncrypt = this->entries.at(i)->getWordCount();
+		intToEncrypt ^= key;
+		outputFile << intToEncrypt;
+
+		//insert an encrypted newline char
+		ch = '\n' ^ key;
+		outputFile.put(ch);
+
+		//get and encrypt and insert the date
+		intToEncrypt = this->entries.at(i)->getDate();
+		intToEncrypt ^= key;
+		outputFile << intToEncrypt;
+
+		//insert an encrypted newline char
+		outputFile.put(ch);
+
+		//get and encrypt and insert the mood
+		intToEncrypt = this->entries.at(i)->getMood();
+		intToEncrypt ^= key;
+		outputFile << intToEncrypt;
+
+		//insert an encrypted newline char
+		outputFile.put(ch);
+		
+		
+	}
 
 
 	outputFile.close();

@@ -13,6 +13,7 @@ std::string getPrompt();
 // Utility functions.
 void clearTheScreen();
 void pause();
+void encryptString(std::string&, int);
 
 // Validation functions.
 char validateMenuChoice(char);
