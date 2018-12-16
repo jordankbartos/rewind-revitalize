@@ -5,38 +5,50 @@
  * Description: main driver for Rewind Revitalize.
 *******************************************************************************/
 
-#include <iostream>		// cout
 #include "Journal.hpp"
 #include "helperFunctions.hpp"
 
+using std::cin;
+using std::cout;
+using std::string;
+using std::ofstream;
 
 int main()
 {
-	srand(time(0));
-	/* TESTING AREA */
-	/*journal->displayEntry(1234567890);
-	journal->encryptAndSave();*/
+	char selection;			// To hold user menu selections.
+	string username;
+	string password;
+	bool newUser = false;
+	bool validPassword = false;
 
+	// For writing the username and password to a file if the user
+	// wants to create a new account.
+	ofstream ofs;
+
+	// Display the main menu.
+	displayIntro();
+
+	// Create the journal.
 	Journal* journal = new Journal();
 
 	// This do-while loop handles the username.
 	do {
 
 		// Prompt for username.
-		std::cout << "\nPlease enter your username: ";
-		getline(std::cin, username);
+		cout << "\nPlease enter your username: ";
+		getline(cin, username);
 
-		/* Check if the username exists by determining is there is
+		/* Check if the username exists by determining is there is 
 		 * a "username.txt" file. */
 		if (!journal->userNameExists(username)) {
 
 			selection = ' ';
 
-			/* If not found, prompt to make a new account.
+			/* If not found, prompt to make a new account. 
 			 * If user answer no, loop again to prompt for username. */
 			std::cout << "\nUsername not found. "
 				<< "Do you want to make a new account (Y/N)? ";
-
+			
 			// answer will be 'y' or 'n'
 			selection = getYesNoAnswer();
 
@@ -44,43 +56,47 @@ int main()
 			 * with the given username */
 			if (selection == 'y') {
 
-				newUser = true;
-				journal->openUserFile(username);
-			}
-		}
-		else {
+				// Open a file with the name of the username.
+				string filename = username + ".log";
+				ofs.open(filename.c_str());
 
-			/* If found, openUserFile should handle opening an existing
-			 * log file using the given username */
-			journal->openUserFile(username);
+				// Add the username as the first line.
+				ofs << username << "\n";
+
+				newUser = true;
+			}
 		}
 
 	} while (selection != 'n');
 
 	// This do-while loop handles the user password.
 	do {
-
+		
 		// Check if the user is a new user.
 		if (newUser) {
 
-			std::string password2;	// To hold the user re-entered password.
+			string password2;	// To hold the user re-entered password.
 			do {
 
 				// Have the user create a new password for their account.
-				std::cout << "\nPlease enter a new password: ";
-				getline(std::cin, password);
+				cout << "\nPlease enter a new password: ";
+				getline(cin, password);
 
 				// Have the user confirm the new password.
-				std::cout << "\nPlease confirm your password: ";
-				getline(std::cin, password2);
+				cout << "\nPlease confirm your password: ";
+				getline(cin, password2);
 
 				// Check if the two passwords match.
 				if (password != password2) {
 
-					std::cout << "\nSorry, those passwords do not match.";
+					cout << "\nSorry, those passwords do not match.";
 				}
 				else {
 
+					// Write the password to the file as the second line
+					// and close the file.
+					ofs << password << "\n";
+					ofs.close();
 					validPassword = true;
 				}
 
@@ -90,12 +106,12 @@ int main()
 		else {
 
 			// Prompt for the user password.
-			std::cout << "\nPlease enter your password: ";
+			cout << "\nPlease enter your password: ";
 			getline(std::cin, password);
 
 			/* Check if the password is valid. This should get the
 			 * decrypted password from the log file, attempt to decrypt
-			 * with the given password, and then validate that they are
+			 * with the given password, and then validate that they are 
 			 * the same. */
 			if (journal->validatePassword(password)) {
 
@@ -103,7 +119,7 @@ int main()
 			}
 			else {
 
-				std::cout << "\nThat is not a valid password.\n";
+				cout << "\nThat is not a valid password.\n";
 			}
 		}
 
@@ -122,7 +138,7 @@ int main()
 
 		// User selected option 1: enter a new journal.
 		case '1':
-
+			
 			journal->addEntry();
 			break;
 
@@ -134,18 +150,17 @@ int main()
 
 		// User selected option 3: show statistics.
 		case '3':
-
-			// TODO: ANY OTHER STATS TO SHOW??
-			std::cout << "\n\nLIFETIME STATISTICS\n"
+			
+			cout << "\n\nLIFETIME STATISTICS\n"
 				<< "\nNumber of Entries: " << journal->getNumEntries()
 				<< "\nAverage Word Count: " << journal->getAvgWordCount()
 				<< "\nLongest Entry: " << journal->getLongestPost()
 				<< "\nShortest Entry: " << journal->getShortestPost()
-				<< "\nAverage Mood: " // << journal->getAvgMood() ??
+				<< "\nAverage Mood: " << journal->getAvgMood()
 				<< "\n";
 			break;
 
-		// User selected option 4: exit.
+		// User selected option 4: exit. 
 		case '4':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
@@ -154,7 +169,7 @@ int main()
 		/* EXCEPTION HANDLING:
 		 * Input validator should prevent 'default' from being reached. */
 		default:
-			std::cout << "\n\nERROR: Something went wrong. "
+			cout << "\n\nERROR: Something went wrong. "
 				<< "Terminating program.\n\n";
 			pause();
 			return 0;
