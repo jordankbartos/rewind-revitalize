@@ -16,87 +16,13 @@
 *******************************************************************************/
 Journal::Journal()
 {
+	this->encryptedFile = "";
 	this->numEntries = 0;
 	this->avgWordCount = 0;
 	this->longestPost = 0;
 	this->shortestPost = 0;
 	this->avgMood = 0;
 }
-
-/*******************************************************************************
- * Function: 			Journal(std::string)
- * Description: a constructor for a journal object that takes a pointer to a
- * 	string that corresponds to a journal log file and populates the journal
- * 	with entries from the log file
-*******************************************************************************/
-/*Journal::Journal(std::string filename)
-{
-	//initialize EntriesLog fstream object with the file name and open for
-	//reading
-
-	/*
-	this->EntriesLog.open(filename, std::fstream::in);
-
-	//if the entry log fails to open, construct the object as a default journal
-	if(!EntriesLog)
-	{
-		this->encryptedFile = "";
-		this->numEntries = 0;
-		this->avgWordCount = 0;
-		this->longestPost = 0;
-		this->shortestPost = 0;
-		return;
-	}
-
-	this->encryptedFile = "encryptedFile.txt";
-
-	//first thing in file will be the author's name followed by a newline char
-	//100 is the maximum password size.
-	getline(EntriesLog,this->author);
-
-
-	//second thing in file will be the password followed by a newline char.
-	getline(EntriesLog,this->password);
-
-	//next come the entries in order. Keep reading entries until the EOF is
-	//reached.
-	int endFile = 0;
-	while(EntriesLog && endFile != EOF)
-	{
-		//collect the information for the journal entry in local variables
-		std::string tmp;
-
-		//get entryDate
-		std::getline(this->EntriesLog,tmp);
-		int entryDate = stoi(tmp);
-
-		//get wordcount
-		std::getline(this->EntriesLog,tmp);
-		int wordCount = stoi(tmp);
-
-		//get mood
-		std::getline(this->EntriesLog,tmp);
-		int mood = stoi(tmp);
-
-		//get textBody
-		std::string textBody;
-		std::getline(this->EntriesLog,textBody);
-
-		//get madeHappy
-		std::string madeHappy;
-		std::getline(this->EntriesLog, madeHappy, '\n');
-
-		//generate a journal entry object and add it to the vector of
-		//journal entries
-		this->entries.push_back(new Entry(textBody, madeHappy, wordCount,
-				entryDate, mood));
-
-		//peek at next character to see if loop loop needs to end
-		endFile = EntriesLog.peek();
-	}
-
-	this->EntriesLog.close();
-}*/
 
 /*******************************************************************************
  * Function: 			~Journal()
@@ -110,7 +36,6 @@ Journal::~Journal()
 	}
 }
 
-
 /*******************************************************************************
 * Function: bool userNameExists(std::string)
 * Description: Opens a log file with the name of the username and checks to
@@ -120,7 +45,7 @@ bool Journal::userNameExists(std::string username)
 {
 	// Get the full filename
 	std::string filename = username + ".log";
-
+	
 	// Open the file.
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
@@ -136,6 +61,8 @@ bool Journal::userNameExists(std::string username)
 
 		// Delete the file and return false.
 		if (remove(filename.c_str()) != 0) {
+			
+			// ERROR HANDLING: couldn't delete file for some reason.
 			std::cout << "\nError deleting file.\n";
 		}
 		return false;
@@ -144,32 +71,23 @@ bool Journal::userNameExists(std::string username)
 }
 
 /*******************************************************************************
-* Function: std::ofstream& openUserFile(std::string)
-* Description:
-*******************************************************************************/
-
-std::ofstream& Journal::openUserFile(std::string username)
-{
-	std::string filename = username + ".log";
-
-	std::ofstream ofs;
-	ofs.open(filename.c_str());
-
-	return ofs;
-}
-
-/*******************************************************************************
 * Function: bool validatePassword(std::string)
-* Description:
+* Description: Gets the second line of the file and attempts to decrypt it
+* using the password as a key. If successful, also compares the decrypted
+* password with the user entered password to determine validity.
 *******************************************************************************/
 bool Journal::validatePassword(std::string password)
 {
+	int key = createKey(password);
+	// Get the second line of the input file.
+
+
 	return false;
 }
 
 /*******************************************************************************
 * Function: void rewind()
-* Description:
+* Description: 
 *******************************************************************************/
 void Journal::rewind()
 {
@@ -201,12 +119,6 @@ void Journal::encryptAndSave(std::string password)
 	//generate the encryption key from the password
 	int key = createKey(password);
 
-	int encryptionKey=1;
-	for(unsigned int i = 0; i < this->password->length(); ++i)
-	{
-		encryptionKey += static_cast<int>(this->password->at(i));
-	}
-
 	std::cout << "encryptionKey: " << key << std::endl;
 
 	//char will receive one character at a time from the entries log for
@@ -226,7 +138,7 @@ void Journal::encryptAndSave(std::string password)
 	}
 
 
-	outputFile.close();*/
+	outputFile.close();
 }
 
 /*******************************************************************************
@@ -234,13 +146,12 @@ void Journal::encryptAndSave(std::string password)
  * Description: decrypts and loads all the journal entries in a journal log file
  * 	instantiating each journal entry as a new Entry object and adding each one
  * 	to the array of Entry* entries member variable. Uses the password as a
- * 	decryption key. Returns true if the read was successful and false if the
- * 	read was unsuccessful
+ * 	decryption key. This function will not be called 
 *******************************************************************************/
 void Journal::decryptAndLoad(std::string password)
 {
 	int key = createKey(password);
-
+	
 	//attempt to decrypt the file
 	//make a txt file to store decrypted contents
 	std::ofstream decryptedFile("decryptedFile.txt");
@@ -253,7 +164,7 @@ void Journal::decryptAndLoad(std::string password)
 		ch ^= key;
 		decryptedFile.put(ch);
 	}
-
+	
 	/*
 	//attempt to read the password from the decrypted file
 	std::string tmp;
@@ -330,7 +241,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for what made them happy
-	cout << "In one sentence, what is something that made you happy today? " << endl;
+	cout << endl << endl << "In one sentence, what is something that made you happy today? " << endl;
 	std::string tempString;
 	getline(cin, tempString);
 	//Store in happy
@@ -351,8 +262,6 @@ void Journal::addEntry()
 		if(tempString != "QUIT")
 		{
 			body += tempString;
-			body += '\n';
-
 		}
 		else
 		{
@@ -363,59 +272,10 @@ void Journal::addEntry()
 	newEntry->setTextBody(body);
 	clearTheScreen();
 	//Count the words
-	newEntry->countWords();
-	cout << "Words: " << newEntry->getWordCount() << endl;
-	pause();
-
-	//Testing display the info
-	clearTheScreen();
-
-	cout << "Happy line: " << endl;
-	cout << newEntry->getMadeHappy();
-	pause();
-
-	clearTheScreen();
-
-	cout << "Mood: " << newEntry->getMood() << endl;
-	pause();
-
-	clearTheScreen();
-	cout << "Main: " << endl;
-	cout << endl << newEntry->getTextBody() << endl;
-
-	pause();
+	//Store it
 	this->entries.push_back(newEntry);
-
+	pause();
 	delete newEntry;
-}
-/*******************************************************************************
- * Function:			string getPrompt()
- * Description: returns a string for a randomly selected prompt. Prompts are
- * stored in a text file and the function randomly decides which line to use.
-*******************************************************************************/
-std::string Journal::getPrompt()
-{
-	//Initialize random number and open prompt file
-	int num = rand();
-	fstream input;
-	std::string prompt;
-	input.open("prompts.txt");
-	if(!input)
-	{
-		cout << "File open error" << endl;
-		return "No file found";
-	}
-
-	//Get random num in range
-	num = num % 40 + 1;
-	//Loop until the correct line is found
-	for(int i = 0; i < num; i++)
-	{
-		getline(input, prompt);
-	}
-	input.close();
-	return prompt;
-
 }
 
 // Getters and setters

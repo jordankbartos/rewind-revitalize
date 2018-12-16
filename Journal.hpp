@@ -18,16 +18,19 @@ class Journal
 {
 	private:
 		std::string encryptedFile;
-		std::vector<Entry*> entries;	 	//a pointer to an array of entries
 
+		// To hold the entries loaded from the log file.
+		std::vector<Entry*> entries;
+
+		// Member variables to hold entry statistics.
 		int numEntries;
 		double avgWordCount;
 		int longestPost;
 		int shortestPost;
 		int avgMood;
 
-
-		std::fstream EntriesLog; 		//a pointer to an fstream object for
+		// For saving/loading a log file.
+		std::fstream EntriesLog; 
 
 		// Private methods.
 		int createKey(std::string);
@@ -36,9 +39,7 @@ class Journal
 	public:
 		//constructors and destructors
 		Journal();
-		//Journal(std::string);
 		~Journal();
-		Journal(std::string);
 
 		//getters and setters
 		int getNumEntries();
@@ -49,15 +50,13 @@ class Journal
 
 		//other functions
 		bool userNameExists(std::string);
-	    std::ofstream& openUserFile(std::string);
 		bool validatePassword(std::string);
-		void rewind();			// gets a random happy memory.
-		void encryptAndSave(std::string);	// Encrypts the user data to
+		void rewind();
+		void encryptAndSave(std::string);
 		void decryptAndLoad(std::string);
 		void displayEntry(int);
 		void addEntry();
-		std::string getPrompt();
-
+		
 };
 
 
