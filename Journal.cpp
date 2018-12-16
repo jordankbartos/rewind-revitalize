@@ -294,7 +294,7 @@ void Journal::addEntry()
 	//Store it
 	Entry e1 = Entry(body, happy, words, date, mood);
 	Entry* newEntry;
-	newEntry = e1;
+	newEntry = &e1;
 	this->entries.push_back(newEntry);
 	pause();
 
