@@ -245,9 +245,28 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for main entry
+	std::string prompt = getPrompt();
+	cout << prompt << endl << endl;
+	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
+	tempString = "";
+	std::string body = "";
+	bool quit = false;
+	while(!quit)
+	{
+		getline(cin, tempString);
+		if(tempString != "QUIT")
+		{
+			body =+ tempString;
+		}
+		else
+		{
+			quit = true;
+		}
 
-
+	}
+	newEntry->setTextBody(body);
+	clearTheScreen();
 	//Count the words
 	//Store it
 	this->entries.push_back(newEntry);

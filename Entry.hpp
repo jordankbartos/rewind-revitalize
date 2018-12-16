@@ -30,7 +30,7 @@ using std::rand;
 class Entry
 {
 	private:
-		std::string* textBody;
+		std::string textBody;
 		std::string madeHappy;
 		int wordCount;
 		int date;
@@ -40,12 +40,12 @@ class Entry
 	public:
 		//constructors and destructor
 		Entry();
-		Entry(std::string*,std::string,int,int,int);
+		Entry(std::string,std::string,int,int,int);
 		~Entry();
 
 		//getters and setters
-		void setTextBody(std::string*);
-		std::string* getTextBody();
+		void setTextBody(std::string);
+		std::string getTextBody();
 		int getWordCount();
 		void countWords();
 		void setDate(int);
