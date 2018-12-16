@@ -41,7 +41,7 @@ class Journal
 		double getAvgWordCount();
 		int getLongestPost();
 		int getShortestPost();
-		void getAuthor;
+		void getAuthor();
 		// int getAvgMood(); ??
 
 		//other functions

@@ -40,9 +40,9 @@ Journal::Journal(std::string filename)
 	//if the entry log fails to open, construct the object as a default journal
 	if(!EntriesLog)
 	{
-		this->encryptedFile = NULL;
-		this->author = NULL;
-		this->password = NULL;
+		this->encryptedFile = "";
+		this->author = "";
+		this->password = "";
 		this->numEntries = 0;
 		this->avgWordCount = 0;
 		this->longestPost = 0;
@@ -51,17 +51,15 @@ Journal::Journal(std::string filename)
 	}
 
 
-	this->encryptedFile = new std::string("encryptedFile.txt");
+	this->encryptedFile = "encryptedFile.txt";
 
 	//first thing in file will be the author's name followed by a newline char
 	//100 is the maximum password size
-	this->author = new std::string;
-	std::getline(EntriesLog,*this->author);
+	std::getline(EntriesLog,this->author);
 
 
 	//second thing in file will be the passowrd followed by a newline char
-	this->password = new std::string;
-	std::getline(EntriesLog,*this->password);
+	std::getline(EntriesLog,this->password);
 
 	//next come the entries in order. Keep reading entries until the EOF is
 	//reached
@@ -109,22 +107,13 @@ Journal::Journal(std::string filename)
 *******************************************************************************/
 Journal::~Journal()
 {
-	delete this->author;
-	delete this->password;
 	for(unsigned int i = 0; i < this->entries.size(); ++i)
 	{
 		delete this->entries.at(i);
 	}
 }
 
-/*******************************************************************************
- * Function:			getPassword()
- * Description: returns a pointer to the password member variable
-*******************************************************************************/
-std::string* Journal::getPassword()
-{
-	return this->password;
-}
+
 
 /*******************************************************************************
  * Function:			void encryptAndSave()
