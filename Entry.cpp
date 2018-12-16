@@ -15,7 +15,7 @@
 *******************************************************************************/
 Entry::Entry()
 {
-	this->textBody = NULL;
+	this->textBody = "";
 	this->madeHappy ="";
 	this->wordCount = 0;
 	this->date = 0;

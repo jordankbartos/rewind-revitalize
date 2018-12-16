@@ -85,8 +85,8 @@ Journal::Journal(std::string filename)
 		int mood = stoi(tmp);
 
 		//get textBody
-		std::string* textBody = new std::string;
-		std::getline(this->EntriesLog,*textBody);
+		std::string textBody;
+		std::getline(this->EntriesLog,textBody);
 
 		//get madeHappy
 		std::string madeHappy;
@@ -196,7 +196,7 @@ void Journal::displayEntry(int search)
 			std::cout << "\nMade me happy:\n"
 					<< this->entries.at(i)->getMadeHappy() << "\n\n";
 			std::cout << "Entry:\n"
-					<< *this->entries.at(i)->getTextBody() << std::endl;
+					<< this->entries.at(i)->getTextBody() << std::endl;
 
 			pause();
 		}
@@ -245,7 +245,7 @@ void Journal::addEntry()
 	clearTheScreen();
 
 	//Prompt the user for main entry
-	std::string prompt = getPrompt();
+	std::string prompt = newEntry->getPrompt();
 	cout << prompt << endl << endl;
 	cout << "Enter QUIT on a separate line when finished" << endl << endl;
 	//Get input for main entry
