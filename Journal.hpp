@@ -27,10 +27,12 @@ class Journal
 		double avgWordCount;
 		int longestPost;
 		int shortestPost;
-		int avgMood;
+		double avgMood;
+		int totalWord;
+		int totalMood;
 
 		// For saving/loading a log file.
-		std::fstream EntriesLog; 
+		std::fstream EntriesLog;
 
 		// Private methods.
 		//int createKey(std::string);
@@ -46,7 +48,7 @@ class Journal
 		double getAvgWordCount();
 		int getLongestPost();
 		int getShortestPost();
-		int getAvgMood();
+		double getAvgMood();
 
 		//other functions
 		int createKey(std::string);
@@ -57,7 +59,7 @@ class Journal
 		void decryptAndLoad(std::string);
 		void displayEntry(int);
 		void addEntry();
-		
+
 };
 
 
