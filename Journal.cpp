@@ -292,7 +292,8 @@ void Journal::addEntry()
 	//Count the words
 	int words = countWords(body);
 	//Store it
-	this->entries.push_back(Entry*(body, happy, words, date, mood));
+	Entry* newEntry = Entry(body, happy, words, date, mood);
+	this->entries.push_back(newEntry);
 	pause();
 
 }
