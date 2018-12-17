@@ -92,8 +92,6 @@ void pause()
 *******************************************************************************/
 void clearTheScreen()
 {
-	/* THIS METHOD DOES NOT SEEM TO BE WORKING FOR ME :(   -ANDREW */
-
 	//this was found at http://stackoverflow.com/questions/17335816/clear-scren
 	//-using-c
 	std::cout << "\033[2J\033[1;1H";
@@ -344,28 +342,7 @@ void printFileContents(std::string str)
 			getline(ifs,printString);
 			std::cout << printString << std::endl;
 		}
-		
+
 	}
-		
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

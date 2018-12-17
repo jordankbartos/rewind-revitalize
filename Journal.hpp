@@ -22,7 +22,6 @@ class Journal
 {
 	private:
 		std::string encryptedFile;
-
 		// To hold the entries loaded from the log file.
 		std::vector<Entry*> entries;
 
@@ -38,8 +37,6 @@ class Journal
 		// For saving/loading a log file.
 		std::fstream EntriesLog;
 
-		// Private methods.
-		//int createKey(std::string);
 
 	public:
 		//constructors and destructors

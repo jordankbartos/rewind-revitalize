@@ -127,7 +127,7 @@ bool Journal::validatePassword(std::string username, std::string password)
 
 /*******************************************************************************
 * Function: void rewind()
-* Description:
+* Description: Prints a happy memory from a random entry
 *******************************************************************************/
 void Journal::rewind()
 {
@@ -384,7 +384,7 @@ void Journal::displayEntry(int search)
 	{
 		if(this->entries.at(i)->getDate() == search)
 		{
-			//clearTheScreen();		CLEAR SCREEN NOT WORKING
+			//clearTheScreen();
 
 			std::cout << "Date: "
 					<< this->entries.at(i)->getDate() << "\n";
@@ -425,7 +425,7 @@ void Journal::addEntry()
 	newEntry->setDate(date);
 	//Mood
 
-	//Clear the clearTheScreen
+	//Clear the screen
 	clearTheScreen();
 	cout << "How would you rate your mood? (1 - 5)" << endl;
 	int mood = validateIntRange(1, 5);
@@ -479,7 +479,6 @@ void Journal::addEntry()
 		this->setShortestPost(words);
 	}
 	//Set average words
-
 	double avgWords = static_cast<double>(this->getTotalWord());
 	double wordsResult = avgWords / this->getNumEntries();
 	this->setAvgWordCount(wordsResult);
@@ -552,7 +551,3 @@ void Journal::setAvgMood(double mood)
 {
 	this->avgMood = mood;
 }
-/*******************************************************************************
- * Function:
- * Description:
-*******************************************************************************/
