@@ -249,7 +249,7 @@ int validateIntRange(int lower, int upper)
 		getter = getter.substr(1, (getter.length() - 1));
 	}
 
-	int userInput = std::stoi(getter);
+	int userInput = std::atoi(getter.c_str());
 
 	if (isNegative)
 	{
