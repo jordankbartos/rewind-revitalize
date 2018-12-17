@@ -180,7 +180,7 @@ int main()
 			break;
 
 			//Search and display entry
-			case '4':
+		case '4':
 				clearTheScreen();
 				cout << "\n\nEnter the date of the entry/entries you wish to view" << endl;
 				cout << "Use the format ddmmyyyy" << endl;
