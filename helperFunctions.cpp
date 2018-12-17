@@ -14,8 +14,9 @@
 void displayIntro() {
 	printFileContents("REWIND-REVITALIZE.txt");
 	std::cout << "\n                        A journaling program\n" << 
-				"          by Andrew Swaim, Michael Stanley, "
-			<< "and Jordan Bartos" << std::endl;
+				"                   by Team The Unhandled Exceptions\n" << 
+				"         Andrew Swaim, Michael Stanley, "
+			<< "and Jordan Bartos\n\n\n\n\n" << std::endl;
 
 }
 
