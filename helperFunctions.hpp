@@ -24,10 +24,4 @@ std::string getPrompt();
 int countWords(std::string);
 bool validateInput(std::string,int);
 
-
-// TODO
-bool isValidUsername(std::string);
-bool isValidPassword(std::string);
-
-
 #endif

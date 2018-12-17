@@ -13,6 +13,9 @@
 *******************************************************************************/
 void displayIntro() {
 	printFileContents("REWIND-REVITALIZE.txt");
+	std::cout << "\n                        A journaling program\n" << 
+				"          by Andrew Swaim, Michael Stanley, "
+			<< "and Jordan Bartos" << std::endl;
 
 }
 
@@ -266,12 +269,6 @@ int validateIntRange(int lower, int upper)
 
 }
 
-// TODO
-bool isValidUsername(std::string)
-{
-	return false;
-}
-
 
 /*******************************************************************************
  * Function:			int countWords()
@@ -304,12 +301,6 @@ int countWords(std::string s)
 	}
  	return words;
 }
-
-bool isValidPassword(std::string)
-{
-	return false;
-}
-
 
 /*************************************************************************************
  * Function			void encryptString(string to encrypt, int key)
