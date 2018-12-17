@@ -4,7 +4,7 @@ A journaling app with a focus on mental health. Rate your mood, check stats, and
 
 [repl.it example of our program running](https://repl.it/@mstanley/RewindRevitalize)
 
-**NOTE**To run Rewind Revitalize on your own machine, simply use the included makefile to quickly compile and run the program! 
+**NOTE:** To run Rewind Revitalize on your own machine, simply use the included makefile to quickly compile and run the program! 
 
 
 ### Inspiration
