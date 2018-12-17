@@ -179,12 +179,13 @@ int main()
 			pause();
 			break;
 
+			//Search and display entry
 			case '4':
 				clearTheScreen();
 				cout << "\n\nEnter the date of the entry/entries you wish to view" << endl;
 				cout << "Use the format ddmmyyyy" << endl;
-				int search = validateIntRange(0, 99999999);
-				journal->displayEntry(search);
+				int searcher = validateIntRange(0, 99999999);
+				journal->displayEntry(searcher);
 				break;
 
 		// User selected option 5: exit.

@@ -34,7 +34,7 @@ char displayMainMenu() {
 		<< "4) Entry Search\n"
 		<< "5) Exit\n\n";
 
-	return '4';
+	return '5';
 }
 
 
