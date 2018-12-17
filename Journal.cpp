@@ -402,6 +402,14 @@ void Journal::displayEntry(int search)
 
 			pause();
 		}
+		else
+		{
+			clearTheScreen();
+
+			cout << "No entries match this date" << endl;
+			pause();
+		}
+		
 	}
 	return;
 }
