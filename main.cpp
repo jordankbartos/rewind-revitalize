@@ -38,9 +38,20 @@ int main()
 	do {
 
 		// Prompt for username.
-		clearTheScreen();
-		cout << "\nPlease enter your username: ";
-		getline(cin, username);
+		do {
+			clearTheScreen();
+			cout << "\nPlease enter your username: ";
+			getline(cin, username);
+			if(!validateInput(username,20))
+			{
+				std::cout << "Username must be between 1 and 20 characters " <<
+							"and must contain only alphanumeric characters\n" <<
+							"or \'-\' or \'_\'." << std::endl;
+				pause();
+			}
+			
+		} while(!validateInput(username,20));
+	
 
 		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */

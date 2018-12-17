@@ -491,6 +491,7 @@ void Journal::addEntry()
 
 }
 
+
 // Getters and setters
 int Journal::getNumEntries()
 {

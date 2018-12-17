@@ -22,6 +22,7 @@ char getYesNoAnswer();
 int validateIntRange(int, int);
 std::string getPrompt();
 int countWords(std::string);
+bool validateInput(std::string,int);
 
 
 // TODO
