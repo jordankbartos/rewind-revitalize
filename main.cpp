@@ -144,7 +144,7 @@ int main()
 
 	// If password was successful, decrypt the journal entries.
 	journal->decryptAndLoad(password);
-
+	int searcher;
 	// Display the main menu.
 	do {
 
@@ -184,7 +184,7 @@ int main()
 				clearTheScreen();
 				cout << "\n\nEnter the date of the entry/entries you wish to view" << endl;
 				cout << "Use the format ddmmyyyy" << endl;
-				int searcher = validateIntRange(0, 99999999);
+				searcher = validateIntRange(0, 99999999);
 				journal->displayEntry(searcher);
 				break;
 
