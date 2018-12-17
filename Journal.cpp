@@ -364,6 +364,11 @@ void Journal::decryptAndLoad(std::string password)
 		//generate new Entry and add to vector of entries
 		this->entries.push_back(new Entry(textBody,madeHappy,wordCount,date,mood));
 	}
+		if(numEntries != 0)
+		{
+			this->avgWordCount = this->totalWord / this->numEntries;
+			this->avgMood = this->totalWord / this->numEntries;
+		}
 
 	//close both files
 	ifs.close();
