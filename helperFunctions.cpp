@@ -13,8 +13,8 @@
 *******************************************************************************/
 void displayIntro() {
 	printFileContents("REWIND-REVITALIZE.txt");
-	std::cout << "\n                        A journaling program\n" << 
-				"                   by Team The Unhandled Exceptions\n" << 
+	std::cout << "\n                        A journaling program\n" <<
+				"                   by Team The Unhandled Exceptions\n" <<
 				"         Andrew Swaim, Michael Stanley, "
 			<< "and Jordan Bartos\n\n\n\n\n" << std::endl;
 
@@ -31,7 +31,8 @@ char displayMainMenu() {
 		<< "1) Make a new journal entry\n"
 		<< "2) REWIND to a happy memory\n"
 		<< "3) View lifetime statistics\n"
-		<< "4) Exit\n\n";
+		<< "4) Entry Search\n"
+		<< "5) Exit\n\n";
 
 	return '4';
 }
@@ -362,7 +363,7 @@ bool validateInput(std::string inputString, int maxLength)
 			{
 				return false;
 			}
-			else if(inputString.at(i) > 122 && inputString.at(i) != '_' 
+			else if(inputString.at(i) > 122 && inputString.at(i) != '_'
 					&& inputString.at(i) != '-')
 			{
 				return false;
@@ -375,4 +376,3 @@ bool validateInput(std::string inputString, int maxLength)
 	}
 	return true;
 }
-
