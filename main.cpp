@@ -49,9 +49,9 @@ int main()
 							"or \'-\' or \'_\'." << std::endl;
 				pause();
 			}
-			
+
 		} while(!validateInput(username,20));
-	
+
 
 		/* Check if the username exists by determining is there is
 		 * a "username.txt" file. */
@@ -179,8 +179,16 @@ int main()
 			pause();
 			break;
 
-		// User selected option 4: exit.
-		case '4':
+			case '4':
+				clearTheScreen();
+				cout << "\n\nEnter the date of the entry/entries you wish to view" << endl;
+				cout << "Use the format ddmmyyyy" << endl;
+				int search = validateIntRange(0, 99999999);
+				journal->displayEntry(search);
+				break;
+
+		// User selected option 5: exit.
+		case '5':
 			/* This will do nothing and end the do-while loop
 			 * to exit the program */
 			break;
@@ -195,7 +203,7 @@ int main()
 			break;
 		}
 
-	} while (selection != '4');
+	} while (selection != '5');
 
 	// Indicate the program is ending.
 	displayOutro();

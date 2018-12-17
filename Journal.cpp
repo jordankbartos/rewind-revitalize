@@ -389,7 +389,7 @@ void Journal::displayEntry(int search)
 	{
 		if(this->entries.at(i)->getDate() == search)
 		{
-			//clearTheScreen();
+			clearTheScreen();
 
 			std::cout << "Date: "
 					<< this->entries.at(i)->getDate() << "\n";
