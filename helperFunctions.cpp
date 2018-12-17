@@ -346,3 +346,41 @@ void printFileContents(std::string str)
 	}
 
 }
+
+/*******************************************************************************
+ * Function:			bool validateInput(string,int)
+ * Description: Takes a string to be validated and an int that is the maximum
+ * allowable length of the string. Returns true if the supplied string does not
+ * contain any characters besides alphanumeric characters and '-' or '_' and is
+ * less than or equal to the maximum length. Otherwise returns false.
+********************************************************************************/
+bool validateInput(std::string inputString, int maxLength)
+{
+	//inputString must be greater than 0 characters long and less than or equal
+	//to maximum allowable length
+	if(inputString.length() > 0 && inputString.length() <= maxLength)
+	{
+		for(unsigned int i = 0; i < inputString.length(); ++i)
+		{
+			if(inputString.at(i) < 65 && inputString.at(i) != '-')
+			{
+				 return false;
+			}
+			else if(inputString.at(i) > 90 && inputString.at(i) < 97 && inputString.at(i) != '_')
+			{
+				return false;
+			}
+			else if(inputString.at(i) > 122 && inputString.at(i) != '_' 
+					&& inputString.at(i) != '-')
+			{
+				return false;
+			}
+		}
+	}
+	else
+	{
+		return false;
+	}
+	return true;
+}
+
