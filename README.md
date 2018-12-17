@@ -1,6 +1,6 @@
 
 # Rewind Revitalize
-### A journaling app with a focus on mental health. Rate your mood, check stats, and see happy memories when you're blue.
+A journaling app with a focus on mental health. Rate your mood, check stats, and see happy memories when you're blue.
 
 
 ## Inspiration
