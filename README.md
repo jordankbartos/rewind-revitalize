@@ -5,13 +5,13 @@ A journaling app with a focus on mental health. Rate your mood, check stats, and
 
 ## Inspiration
 
-Awareness and acceptance for mental health issues has been steadily increasing, as shown by the abundance of self help books, or the rise in popularity of yoga and meditation. Research has shown that journaling is also an effective tool to aid combating many common mental health issues. For severe cases, therapy, medication, or more extensive measures should be taken as directed by a doctor or registered physician. However, for mild or moderate cases, there seems to be a lack of technological tools readily available for the everyday person who may be experiencing extensive difficulties, challenges, stress, or depressive episodes (this is especially true for us STEM students!).
+Awareness and acceptance for mental health issues has been steadily increasing, as shown by the abundance of self help books, or the rise in popularity of yoga and meditation. Research has shown that [journaling is also an effective tool to aid combating many common mental health issues](https://www.urmc.rochester.edu/encyclopedia/content.aspx?ContentID=4552&ContentTypeID=1). For severe cases, therapy, medication, or more extensive measures should be taken as directed by a doctor or registered physician. However, for mild or moderate cases, there seems to be a lack of technological tools readily available for the everyday person who may be experiencing extensive difficulties, challenges, stress, or depressive episodes ([this is especially true for us STEM students!](https://www.sciencemag.org/careers/2015/05/depression-afflicts-almost-half-stem-graduate-students-uc-berkeley)).
 
 
 
 ## What it does
 
-While there are many journaling apps on the market these days, only a few of them are focused on mental health. However all of these other  mental health journaling apps usually only focus on trying to form a community, or utilizing inspirational quotes as a quick pick-me-up. Our app will be unique in that it will combine the meditative and informational tracking of a journal with the proven research of positive memory therapy for the treatment of anxiety or depression.
+While there are many journaling apps on the market these days, only a few of them are focused on mental health. However all of these other  mental health journaling apps usually only focus on trying to form a community, or utilizing inspirational quotes as a quick pick-me-up. Our app will be unique in that it will combine the meditative and informational tracking of a journal with the proven research of [positive memory therapy](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3995858/) for the [treatment of anxiety or depression](https://news.mit.edu/2015/recalling-happier-memories-reverse-depression-0617).
 
 
 
