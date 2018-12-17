@@ -72,5 +72,12 @@ The next step for Rewind Revitalize would be to go bigger and better, and move b
 
 
 ### Resources used
+The holy trinity for coders: [cplusplus.com](http://www.cplusplus.com/), [stackoverflow](https://stackoverflow.com/), [google](https://www.google.com/).
 
+**Specific resources used:**
 
+[https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c](https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c)
+
+[https://stackoverflow.com/questions/17335816/clear-screen-using-c](https://stackoverflow.com/questions/17335816/clear-screen-using-c)
+
+Assembly Language for x86 Processors, 7th ed. by Kip Irvine - page.206 - *Application: Simple String Encryption*
